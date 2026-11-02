@@ -1,169 +1,149 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ボンたちと おしゃべり</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="おこボン・にこボン・ひょえボン・にじボンと、ことばで おしゃべりできる台本つきの会話ツール。">
 <meta name="theme-color" content="#7b2036">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Kurenaido&display=swap">
 <style>
-/* Layout: 砂色の紙に、織物ふうの帯。上から タイトル → 4人のえらびタブ → 会話カード → 反応するワード表。会話カードが主役。 */
-:root {
-  --bg: #efe3c6;
-  --paper: #fbf5e4;
-  --ink: #2d2118;
-  --muted: #6b5842;
-  --line: #cdb98a;
-  --olive: #5f6a2a;
-  --wine: #7b2036;
-  --brown: #4a3322;
-  --bub: #fff9e8;
-  --me: #5f6a2a;
-  --meink: #ffffff;
-  --warn: #fde6df;
-  --btn: #a8324a;
-  --btnink: #ffffff;
-  --link: #7b2036;
-  --c: #d62828;
-  --font-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
-  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1c1712;
-    --paper: #271f18;
-    --ink: #f3e8cf;
-    --muted: #bcab8c;
-    --line: #4d3d2b;
-    --olive: #8a9640;
-    --wine: #c0405a;
-    --brown: #d9c59a;
-    --bub: #33291f;
-    --me: #5f6a2a;
-    --meink: #ffffff;
-    --warn: #4a2530;
-    --link: #f29ab0;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #1c1712;
-  --paper: #271f18;
-  --ink: #f3e8cf;
-  --muted: #bcab8c;
-  --line: #4d3d2b;
-  --olive: #8a9640;
-  --wine: #c0405a;
-  --brown: #d9c59a;
-  --bub: #33291f;
-  --me: #5f6a2a;
-  --meink: #ffffff;
-  --warn: #4a2530;
-  --link: #f29ab0;
-  color-scheme: dark;
-}
-* { box-sizing: border-box; }
-[hidden] { display: none !important; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.8;
-  padding-block: 0 40px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.band {
-  height: 14px;
-  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(135deg, var(--wine) 25%, transparent 25%),
-    linear-gradient(225deg, var(--wine) 25%, transparent 25%),
-    linear-gradient(315deg, var(--olive) 25%, transparent 25%),
-    linear-gradient(45deg, var(--olive) 25%, transparent 25%);
-  background-size: 14px 14px;
-  background-position: -7px 0, -7px 0, 0 0, 0 0;
-}
-main { max-width: 680px; margin: 0 auto; padding-top: 22px; display: flex; flex-direction: column; gap: 18px; }
-h1, h2, h3, p { margin: 0; }
-h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 8vw, 40px); line-height: 1.3; text-wrap: balance; }
-h2 { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-a { color: var(--link); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--wine); outline-offset: 2px; }
-.eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .18em; color: var(--wine); }
-header { display: flex; flex-direction: column; gap: 8px; }
-.lead { color: var(--muted); font-size: 15px; }
-.back { font-size: 14px; align-self: flex-start; }
+/* layout: 博物館トップと同じ「手づくりの図鑑」。砂色の紙・二重枠のカードを織物のテープでとめる・蔦の飾り・菱形の帯。上から タイトル → えらびタブ → 会話 → ことばのヒント → ボンたちのおしゃべり → せってい。 */
+:root{--leaf:#66752F;--teal:#7C8838;--magenta:#96344A;--bg:#F1E4CC;--khaki:#55602A;--vermilion:#7A2434;--ochre:#B07A3C;--ink:#2E241C;--card:#FFF8EA;--mute:#5B4C3E;--ochre-soft:#EAD9B2;--font:"Yomogi","Zen Kurenaido","Hiragino Maru Gothic ProN",sans-serif;--hand:"Zen Kurenaido","Yomogi","Hiragino Maru Gothic ProN",sans-serif;--warn:#fde6df;--c:#d62828;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.75;position:relative;overflow-x:hidden;padding-block:34px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.corner{position:absolute;width:150px;height:150px;pointer-events:none;color:var(--leaf);opacity:.75;z-index:0}
+.c1{top:0;right:0}.c2{bottom:0;left:0;transform:rotate(180deg)}
+.c3{top:0;left:0;transform:scaleX(-1)}
+.c4{bottom:0;right:0;transform:rotate(180deg) scaleX(-1)}
+h2{font-family:var(--hand);font-size:23px;line-height:1.4;margin:0 0 14px;display:flex;align-items:center;gap:8px;color:var(--khaki);font-weight:700}
+h2::after{content:"";flex:1;min-width:20px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M12 1 L19 6 L12 11 L5 6Z' fill='%23B07A3C' stroke='%2355602A' stroke-width='1.4' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='6' r='1.6' fill='%237A2434'/%3E%3C/svg%3E") repeat-x left center}
+.sheet{position:relative;background:var(--card);border:2.5px solid var(--khaki);border-radius:8px;padding:20px 16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0;line-height:1.65;box-shadow:3px 3px 0 rgba(85,96,42,.25),inset 0 0 0 4px var(--card),inset 0 0 0 5.5px var(--ochre)}
+.sheet::before{content:"";position:absolute;top:-13px;left:50%;width:78px;height:24px;margin-left:-39px;transform:rotate(-2.5deg);background:repeating-linear-gradient(90deg,#7A2434 0 7px,#B07A3C 7px 11px,#55602A 11px 18px,#B07A3C 18px 22px);clip-path:polygon(0 0,100% 0,96% 25%,100% 50%,96% 75%,100% 100%,0 100%,4% 75%,0 50%,4% 25%)}
+.sheet:nth-child(even)::before{background:repeating-linear-gradient(90deg,#7C8838 0 7px,#B07A3C 7px 11px,#96344A 11px 18px,#B07A3C 18px 22px);transform:rotate(2deg)}
+.band{height:16px;margin:0;border-radius:2px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Crect width='48' height='16' fill='%2355602A'/%3E%3Cpath d='M12 1 L21 8 L12 15 L3 8Z' fill='%23B07A3C'/%3E%3Cpath d='M12 5 L16 8 L12 11 L8 8Z' fill='%237A2434'/%3E%3Cpath d='M36 1 L45 8 L36 15 L27 8Z' fill='%23B07A3C'/%3E%3Cpath d='M36 5 L40 8 L36 11 L32 8Z' fill='%237C8838'/%3E%3Ccircle cx='24' cy='8' r='2' fill='%23FFF8EA'/%3E%3Ccircle cx='0' cy='8' r='2' fill='%23FFF8EA'/%3E%3Ccircle cx='48' cy='8' r='2' fill='%23FFF8EA'/%3E%3Cpath d='M0 .75H48M0 15.25H48' stroke='%23FFF8EA' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x left center}
+.band.thin{height:10px;width:min(100%,19rem);background-size:30px 10px;margin-top:2px}
+body::before,body::after{content:"";position:absolute;top:0;bottom:0;width:44px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='260' viewBox='0 0 44 260'%3E%3Cpath d='M22 0 C2 43 2 87 22 130 S42 217 22 260' fill='none' stroke='%234F5A26' stroke-width='2.4' stroke-linecap='round'/%3E%3Cg transform='translate(9 52) rotate(-170) scale(1.1)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Cg transform='translate(8 84) rotate(-120) scale(0.9)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Cg transform='translate(21 128) rotate(20) scale(1.1)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Cg transform='translate(34 176) rotate(-10) scale(1)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Cg transform='translate(36 208) rotate(40) scale(0.9)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Cg transform='translate(22 252) rotate(-165) scale(0.9)'%3E%3Cpath d='M0 0 C8 -2 14 -8 14 -16 C6 -14 0 -8 0 0Z' fill='%23A3B060' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M0 0 L11 -12' stroke='%234F5A26' stroke-width='.9' fill='none'/%3E%3C/g%3E%3Ccircle cx='6' cy='68' r='3' fill='%237A2434' stroke='%234F5A26' stroke-width='1.2'/%3E%3Ccircle cx='38' cy='192' r='3' fill='%237A2434' stroke='%234F5A26' stroke-width='1.2'/%3E%3C/svg%3E") repeat-y center top;opacity:.8;pointer-events:none;z-index:0}
+body::before{left:0}
+body::after{right:0;transform:scaleX(-1)}
+.sheet::after,.card::after{content:"";position:absolute;right:-8px;top:-17px;width:54px;height:46px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='46' viewBox='0 0 54 46'%3E%3Cpath d='M4 40 C16 36 22 22 30 20 S44 14 50 4' fill='none' stroke='%234F5A26' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M14 33 q-1 -11 10 -13 q1 11 -10 13z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M28 22 q4 -10 15 -8 q-3 10 -15 8z' fill='%238A9A45' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M40 13 q-3 -9 6 -12 q3 8 -6 12z' fill='%23A3B060' stroke='%234F5A26' stroke-width='1.3' stroke-linejoin='round'/%3E%3Ccircle cx='7' cy='38' r='3' fill='%237A2434' stroke='%234F5A26' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat center/contain;pointer-events:none;transform:rotate(6deg)}
+@media (max-width:560px){body::before,body::after{width:22px;background-size:22px 130px;opacity:.65}.sheet::after,.card::after{width:44px;height:38px;right:-6px;top:-15px}h2 .i{width:24px;height:24px}}
+.parade{display:flex;justify-content:center;align-items:flex-end;gap:2px;margin:34px auto 4px;max-width:560px}
+.parade button{border:0;background:none;padding:0;cursor:pointer;flex:1 1 0;min-width:0;display:flex;justify-content:center;position:relative;-webkit-tap-highlight-color:transparent}
+.parade img{height:80px;width:auto;max-width:100%;object-fit:contain;transform-origin:50% 100%;animation:pbob 2.8s ease-in-out infinite}
+.parade button:nth-child(2) img{animation-delay:.25s}.parade button:nth-child(3) img{animation-delay:.5s}.parade button:nth-child(4) img{animation-delay:.75s}.parade button:nth-child(5) img{animation-delay:1s}.parade button:nth-child(6) img{animation-delay:1.25s}.parade button:nth-child(7) img{animation-delay:1.5s}
+@keyframes pbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.parade .pbub{position:absolute;bottom:92%;left:50%;transform:translateX(-50%);background:#FFF8EA;color:#2E241C;border:2px solid #7A2434;border-radius:12px;padding:1px 9px;font-size:13px;line-height:1.5;white-space:nowrap;display:none;z-index:2;box-shadow:2px 2px 0 rgba(122,36,52,.25)}
+.parade button.on .pbub{display:block}
+.parade button:focus-visible{outline:3px solid #B07A3C;outline-offset:2px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){.parade img{animation:none}}
+.send{margin-top:10px;align-self:flex-start;font:inherit;font-size:20px;line-height:1;color:var(--card);background:var(--vermilion);border:2.5px solid var(--ink);border-radius:8px;padding:13px 26px;text-decoration:none;min-height:50px;display:inline-flex;align-items:center;box-shadow:2px 2px 0 var(--ink)}
+.send:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.send:focus-visible{outline:3px solid var(--khaki);outline-offset:3px}
 
-.tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 8px; }
-.tab { font: inherit; color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; min-height: 48px; }
-.tab .tav { width: 48px; height: 48px; }
-.tab .tn { font-family: var(--font-display); font-weight: 700; font-size: 12px; line-height: 1.3; }
-.tab[aria-pressed="true"] { border-color: var(--c); box-shadow: 0 0 0 2px var(--c); }
+[hidden]{display:none!important}
+main{position:relative;z-index:1;max-width:46rem;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3,p{margin:0}
+h1{font-family:var(--hand);font-size:clamp(30px,8.6vw,48px);line-height:1.25;font-weight:700;text-wrap:balance}
+h2{margin:0}
+.kicker{font-size:15px;letter-spacing:.14em;color:var(--khaki);margin:0;line-height:1.5}
+a{color:var(--vermilion);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--vermilion);outline-offset:3px}
+.back{font-size:15px;align-self:flex-start}
+header{display:flex;flex-direction:column;gap:8px}
+.lead{max-width:34rem}
+.app{display:flex;flex-direction:column;gap:30px;min-width:0}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:10px}
+.tab{font:inherit;color:var(--ink);background:var(--card);border:2.5px solid var(--khaki);border-radius:8px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;min-height:48px;box-shadow:2px 2px 0 rgba(85,96,42,.3)}
+.tab:active{transform:translate(1px,1px)}
+.tab .tav{width:48px;height:48px}
+.tab .tn{font-family:var(--hand);font-weight:700;font-size:13px;line-height:1.3}
+.tab[aria-pressed="true"]{border-color:var(--c);box-shadow:0 0 0 2px var(--c),2px 2px 0 rgba(85,96,42,.3);background:var(--ochre-soft)}
+.sheet.chat,.sheet.setup,.sheet.stage,.sheet.hintbox{gap:12px}
+.who{display:flex;align-items:center;gap:12px}
+.who .big{width:58px;height:58px;flex:none;border-radius:50%;border:3px solid var(--c);background:var(--card);overflow:hidden}
+.who .big img,.tab .tav img,.av img{display:block;width:100%;height:100%;object-fit:contain}
+.who .nm{font-family:var(--hand);font-weight:700;font-size:21px;line-height:1.3}
+.who .bl{font-size:14px;color:var(--mute);line-height:1.5}
+#log,#stage{display:flex;flex-direction:column;gap:10px;padding:12px;background:rgba(234,217,178,.55);border:2px dashed var(--ochre);border-radius:8px;overflow-y:auto}
+#log{height:min(55dvh,520px);min-height:280px}
+#log>*,#stage>*{flex:none}
+#stage{min-height:120px;max-height:min(60dvh,480px)}
+.row{display:flex;align-items:flex-end;gap:8px}
+.row.me{justify-content:flex-end}
+.av{width:38px;height:38px;flex:none;border-radius:50%;border:2.5px solid var(--c);background:var(--card);overflow:hidden}
+.bub{max-width:min(78%,460px);padding:7px 13px;border-radius:10px 10px 10px 2px;font-size:16px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}
+.bot .bub{background:var(--card);border:2px solid var(--khaki)}
+.me .bub{background:var(--khaki);color:var(--card);border-radius:10px 10px 2px 10px}
+.crisis .bub{background:var(--warn);border-color:var(--vermilion)}
+.stamp{width:min(42vw,150px);height:auto;max-height:200px;object-fit:contain;align-self:flex-end}
+.meta{display:block;margin-top:4px;font-size:13px;color:var(--mute)}
+.col{display:flex;flex-direction:column;gap:2px;min-width:0;max-width:min(80%,470px)}
+.col .bub{max-width:none}
+.sname{font-size:13px;color:var(--mute);line-height:1.4;padding-left:4px}
+.stt{font-family:var(--hand);font-weight:700;font-size:18px;color:var(--khaki);text-align:center}
+.send-end{font-size:14px;color:var(--mute);text-align:center}
+.chips,.sbtns{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;color:var(--ink);background:var(--ochre-soft);border:0;border-radius:3px;padding:0 12px;line-height:30px;min-height:38px;cursor:pointer;outline:1.5px dashed var(--khaki);outline-offset:-3px}
+.chip:hover{background:var(--card)}
+.chip:active{transform:translate(1px,1px)}
+form{display:flex;gap:10px}
+input[type="text"]{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:2.5px solid var(--khaki);border-radius:8px;padding:8px 12px;min-height:48px}
+form .send{margin-top:0;align-self:auto;font-size:18px;padding:0 20px;min-height:48px;box-shadow:2px 2px 0 var(--ink)}
+.send:disabled{opacity:.55}
+.note{margin:0;font-size:14px;line-height:1.6;padding:6px 10px;border-left:4px solid var(--ochre);background:rgba(176,122,60,.16);border-radius:0 4px 4px 0;color:var(--ink)}
+.you{font-size:14px;color:var(--mute)}
+.setup form{flex-direction:column;align-items:stretch;gap:8px}
+.setup .send{align-self:flex-start}
+.lab{font-family:var(--hand);font-weight:700;font-size:16px}
+.nrow{display:flex;align-items:center;gap:8px}
+.suf{font-family:var(--hand);font-weight:700;font-size:22px;flex:none}
+.pv{font-size:15px}
+.pv b{font-family:var(--hand);font-weight:700;font-size:22px;overflow-wrap:anywhere}
+.err{min-height:1.6em;font-size:15px;color:var(--vermilion)}
+.cfgf{display:flex;flex-direction:column;gap:8px;padding-top:8px}
+.chk{display:flex;gap:8px;align-items:center;font-size:15px}
+details.kw.sheet{display:block;padding:0}
+details.kw summary{cursor:pointer;padding:12px 18px;font-family:var(--hand);font-weight:700;font-size:19px;color:var(--khaki);min-height:48px}
+details.kw[open] summary{border-bottom:2px dashed var(--ochre)}
+.cfgf,.kwl{padding-inline:18px}
+.kwl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:0;padding-top:10px;padding-bottom:16px;font-size:15px}
+.kwl dt{font-weight:700;color:var(--khaki)}
+.kwl dd{margin:0;overflow-wrap:anywhere}
+.cfgf{padding-bottom:16px}
+.hrow{display:flex;flex-direction:column;gap:4px}
+.hl{font-family:var(--hand);font-weight:700;font-size:17px;color:var(--khaki)}
+.hw{display:flex;flex-wrap:wrap;gap:6px}
+.scbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.scbar .sub{font-size:14px;color:var(--mute)}
+.parade{margin-top:8px}
+.parade img{height:58px;width:58px;border-radius:50%;background:var(--card);border:2.5px solid var(--khaki)}
+section>h2{margin-bottom:22px}
+.setup h2{margin-bottom:0}
+.hintin{padding:14px 18px 18px;display:flex;flex-direction:column;gap:12px}
+footer{max-width:46rem;margin:34px auto 0;position:relative;z-index:1;border-top:2px dashed var(--ochre);padding-top:14px;color:var(--ink);font-size:15px;line-height:1.8}
+footer p{margin:0}
+@media (max-width:440px){.kwl{grid-template-columns:1fr;gap:0}.kwl dt{margin-top:8px}}
+@media (max-width:560px){body{font-size:16px;padding-block:26px 44px}.corner{width:80px;height:80px}.sheet{padding:18px 14px 16px}.sheet::before{width:62px;height:19px;margin-left:-31px;top:-11px}.bub{font-size:15px}}
 
-.chat { background: var(--paper); border: 2px solid var(--brown); border-radius: 14px; box-shadow: inset 0 0 0 5px var(--paper), inset 0 0 0 7px var(--line); padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.who { display: flex; align-items: center; gap: 12px; }
-.who .big { width: 56px; height: 56px; flex: none; border-radius: 50%; border: 3px solid var(--c); background: var(--bub); overflow: hidden; }
-.who .big img, .tab .tav img, .av img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.who .nm { font-family: var(--font-display); font-weight: 900; font-size: 18px; line-height: 1.3; }
-.who .bl { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-#log { height: 55vh; height: min(55dvh, 520px); min-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 12px; background: var(--bg); border: 1.5px solid var(--line); border-radius: 12px; }
-.row { display: flex; align-items: flex-end; gap: 8px; }
-.row.me { justify-content: flex-end; }
-.av { width: 36px; height: 36px; flex: none; border-radius: 50%; border: 2px solid var(--c); background: var(--bub); overflow: hidden; }
-.bub { max-width: min(78%, 460px); padding: 8px 12px; border-radius: 14px; font-size: 15px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0; }
-.bot .bub { background: var(--bub); border: 1.5px solid var(--line); border-bottom-left-radius: 4px; }
-.me .bub { background: var(--me); color: var(--meink); border-bottom-right-radius: 4px; }
-.stamp { width: min(42vw, 150px); height: auto; max-height: 200px; object-fit: contain; align-self: flex-end; }
-.crisis .bub { background: var(--warn); border-color: var(--wine); }
-.meta { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
-
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font: inherit; font-size: 14px; color: var(--ink); background: var(--bub); border: 1.5px solid var(--line); border-radius: 999px; padding: 4px 12px; min-height: 36px; cursor: pointer; }
-.chip:hover { border-color: var(--c); }
-
-form { display: flex; gap: 8px; }
-input[type="text"] { flex: 1; min-width: 0; font: inherit; font-size: 16px; color: var(--ink); background: var(--bub); border: 2px solid var(--line); border-radius: 12px; padding: 8px 12px; min-height: 46px; }
-.send { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--btnink); background: var(--btn); border: 0; border-radius: 12px; padding: 0 20px; min-height: 46px; cursor: pointer; }
-.send:disabled { opacity: .55; cursor: default; }
-.note { font-size: 13px; color: var(--muted); }
-.app { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.setup { background: var(--paper); border: 2px solid var(--brown); border-radius: 14px; box-shadow: inset 0 0 0 5px var(--paper), inset 0 0 0 7px var(--line); padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.setup form { flex-direction: column; align-items: stretch; gap: 8px; }
-.lab { font-family: var(--font-display); font-weight: 700; font-size: 14px; }
-.nrow { display: flex; align-items: center; gap: 8px; }
-.suf { font-family: var(--font-display); font-weight: 900; font-size: 20px; flex: none; }
-.pv { font-size: 15px; }
-.pv b { font-family: var(--font-display); font-weight: 900; font-size: 20px; overflow-wrap: anywhere; }
-.err { min-height: 1.6em; font-size: 14px; color: var(--link); font-weight: 700; }
-.setup .send { align-self: flex-start; }
-.cfgf { display: flex; flex-direction: column; gap: 8px; padding-top: 8px; }
-.chk { display: flex; gap: 8px; align-items: center; font-size: 14px; }
-.you { font-size: 13px; color: var(--muted); }
-
-details.kw { background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; }
-details.kw summary { cursor: pointer; padding: 12px 16px; font-family: var(--font-display); font-weight: 700; min-height: 48px; }
-.kwl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 0; padding: 0 16px 14px; font-size: 14px; }
-.kwl dt { font-weight: 700; color: var(--muted); }
-.kwl dd { margin: 0; overflow-wrap: anywhere; }
-@media (max-width: 440px) { .kwl { grid-template-columns: 1fr; gap: 0; } .kwl dt { margin-top: 8px; } }
-footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 13px; display: flex; flex-direction: column; gap: 4px; }
 </style>
 </head><body>
-<div class="band" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="corner" viewBox="0 0 150 150"><path d="M150 4 C110 6 70 20 48 52 C28 80 30 118 8 146" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><g fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M112 10 q-2 18 -22 22 q0 -18 22 -22z"/><path d="M70 30 q-14 8 -16 26 q16 -4 16 -26z"/><path d="M50 62 q14 -2 22 14 q-16 4 -22 -14z"/><path d="M38 96 q-12 6 -12 22 q14 -4 12 -22z"/></g><circle cx="132" cy="8" r="5" fill="#7A2434" fill-opacity=".85" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="134" r="4" fill="#B07A3C" stroke="currentColor" stroke-width="1.4"/></symbol></defs></svg>
+<svg class="corner c1" aria-hidden="true"><use href="#corner"/></svg>
+<svg class="corner c2" aria-hidden="true"><use href="#corner"/></svg>
+<svg class="corner c3" aria-hidden="true"><use href="#corner"/></svg>
+<svg class="corner c4" aria-hidden="true"><use href="#corner"/></svg>
 <main>
+  <div class="band" aria-hidden="true"></div>
   <a class="back" href="https://bonkurarin.github.io/bon-museum/">← ボンちゃんの小さな博物館へ</a>
   <header>
-    <span class="eyebrow">TALK WITH BONS</span>
+    <p class="kicker">TALK WITH BONS</p>
     <h1>ボンたちと おしゃべり</h1>
+    <div class="band thin" aria-hidden="true"></div>
     <p class="lead">まず、きみの名前を決めよう(ブラウザに保存されて、せっていからいつでも変えられるよ)。話し相手をえらんで、ひとこと送ってみてね。ボンたちは、ことばに反応してセリフを返すよ。</p>
   </header>
 
-  <section class="setup" id="setup" aria-labelledby="sh">
+  <section class="sheet setup" id="setup" aria-labelledby="sh">
     <h2 id="sh">なまえを きめてね</h2>
     <p class="lead">ボンたちは、きみのことを「○○ボン」と呼ぶよ。ひらがな・カタカナで5文字まで入れてね。わからなければ、そのまま「モブボン」でもOK。</p>
     <form id="nf" autocomplete="off">
@@ -182,7 +162,7 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
   <div class="app" id="app" hidden>
   <nav class="tabs" id="tabs" aria-label="話し相手をえらぶ"></nav>
 
-  <section class="chat" aria-label="会話">
+  <section class="sheet chat" aria-label="会話">
     <div class="who">
       <span class="big" id="bigav"></span>
       <div><p class="nm" id="nm"></p><p class="bl" id="bl"></p></div>
@@ -194,10 +174,28 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
       <input type="text" id="t" maxlength="60" placeholder="ひとことどうぞ" aria-label="ボンに話しかける" enterkeyhint="send">
       <button class="send" id="sb" type="submit">おくる</button>
     </form>
-    <p class="note">台本で動く会話ツールだよ(AIではないよ)。ことばによっては、うまく返せないこともあるよ。</p>
+    <p class="note">台本で動く会話ツールだよ(AIとのリアルタイムの会話ではないよ)。ことばによっては、うまく返せないこともあるよ。</p>
   </section>
 
-  <details class="kw" id="cfg">
+  <details class="kw sheet" id="hintd" open>
+    <summary>ことばの ヒント</summary>
+    <div class="hintin">
+      <p class="note">ボンたちが反応することばの例だよ。タップすると、いま話している相手に送られるよ。ここにないことばにも、反応することがあるよ。</p>
+      <div id="hints" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+  </details>
+
+  <section aria-labelledby="sth">
+    <h2 id="sth">ボンたちの おしゃべり</h2>
+    <div class="sheet stage">
+      <p class="note">ボンたちが、お互いに話しているところをのぞいてみよう。話題をえらぶと、台本どおりに会話がはじまるよ。</p>
+      <div class="scbar" id="scs" aria-label="おはなしをえらぶ"></div>
+      <div class="scbar"><button class="chip" type="button" id="scrand">おまかせで見る</button><button class="chip" type="button" id="scstop">とめる</button></div>
+      <div id="stage" role="log" aria-live="polite" aria-label="ボンたちの会話"></div>
+    </div>
+  </section>
+
+  <details class="kw sheet" id="cfg">
     <summary>せってい</summary>
     <form id="sf" autocomplete="off" class="cfgf">
       <label for="snm" class="lab">なまえ</label>
@@ -209,7 +207,7 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
       <p class="note">名前とせっていは、このブラウザに保存されるよ。</p>
     </form>
   </details>
-  <details class="kw">
+  <details class="kw sheet">
     <summary>反応するワードの一覧</summary>
     <dl class="kwl">
       <dt>あいさつ</dt><dd>こんにちは、おはよう、おやすみ、またね、ありがとう、ごめんね、おめでとう、元気?</dd>
@@ -227,11 +225,24 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
       <dt>日常</dt><dd>お風呂、掃除、買い物、洗濯、昼寝、映画、雨の日</dd>
       <dt>いろいろ(もっと)</dt><dd>好きな色、何歳?、歌って、ぎゅー、学校、勉強、宿題、体調、頭が痛い、お金、ほしいもの、おばけ、魔法、夢、宇宙、友だち、けんか、なんで?、ほんと?</dd>
       <dt>ことばあつめ</dt><dd>食べ物・おかし・のみもの・くだもの・やさい・動物・いきもの・自然・服・家のもの・ネット・場所・仕事・趣味・スポーツ・時間・擬音・形容詞・動詞・都道府県・国・日本の行事・学校・気持ちのことばなど、約2234語に、ひとこと返す(例:「プリン」「うどん」「富士山」「ふわふわ」)</dd>
+      <dt>恋バナ</dt><dd>恋バナしよう、好きな人、片思い、告白、デート、失恋、彼氏、彼女</dd>
+      <dt>学校(もっと)</dt><dd>受験、成績、部活、文化祭、運動会、遠足、卒業、給食、夏休み、授業、遅刻</dd>
+      <dt>お金・買い物(もっと)</dt><dd>セール、ポイント、通販、節約、無駄遣い、お小遣い、割り勘、コンビニ、100均</dd>
+      <dt>体調(もっと)</dt><dd>肩こり、腰痛、花粉症、筋トレ、ストレッチ、体重、歯医者、二日酔い、寝不足</dd>
+      <dt>動物・ペット</dt><dd>動物園、水族館、ペット、ハムスター、うさぎ、金魚、ペンギン、くじら、ひよこ</dd>
+      <dt>音楽・歌(もっと)</dt><dd>カラオケ、ライブ、推し、歌詞、作曲、ピアノ、ギター、バンド、アニソン</dd>
+      <dt>夢・将来</dt><dd>将来、将来の夢、なりたい、目標、努力、挑戦、未来、就職、転職</dd>
+      <dt>SNS・スマホ</dt><dd>スマホ、SNS、ツイート、いいね、フォロー、通知、充電、圏外、アプリ</dd>
+      <dt>ことわざ</dt><dd>七転び八起き、石の上にも三年、急がば回れ、猿も木から落ちる、花より団子、ほか14種類(意味を教えてくれるよ)</dd>
+      <dt>なぞなぞ</dt><dd>「なぞなぞ」「クイズ」と送ると出題してくれる。答えを送ると正解かどうか教えてくれる(ヒント・こうさんもあるよ)</dd>
+      <dt>あいさつ・マナー</dt><dd>お願いします、どうぞ、どういたしまして、失礼します、お邪魔します、お大事に、お久しぶり、いってらっしゃい</dd>
+      <dt>ここだけの話</dt><dd>ここだけの話、裏話、こっそり、内緒話、誰にも言わない、ボンたちのひみつ</dd>
       <dt>いま</dt><dd>いま何時?、今日は何曜日?</dd>
       <dt>こまったとき</dt><dd>ヘルプ、なにができる?</dd>
     </dl>
   </details>
   </div>
+  <div class="parade" id="parade" aria-label="ボンたち(タッチするとひとこと)"></div>
 </main>
 <footer>
   <p>つくったひと:ボンちゃん</p>
@@ -679,6 +690,14 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
   Object.keys(NEW2).forEach(function (k) { Object.keys(NEW2[k]).forEach(function (n) { CH[k][n] = NEW2[k][n]; }); });
   var NEW3 = {"oko": {"color": ["あたしの色は赤よ。情熱の色ね！ ……べ、別にそれが一番好きってわけじゃないからね！", "色の話？ 赤は譲れないわ。でも、{n}の好きな色も……聞いてあげてもいいわよ。"], "age": ["歳？ ボンに年齢なんて関係ないわよ！ 気づいたらここにいたの。", "そんなこと聞いてどうするのよ。……教えないわ、ひみつよ！"], "request": ["ちょ、ちょっと！ いきなり何言い出すのよ！ ……でも、気持ちだけは受け取ってあげるわ。", "それはできないわ！ ……べ、別に恥ずかしいからじゃないんだからね！"], "school": ["勉強ね。えらいじゃない！ ……あたしは、勝負ごとのほうが得意だけど。", "宿題とかテストとか、{n}ならできるわよ。あたしが保証してあげる！"], "health": ["体調悪いなら、無理しちゃダメよ！ ちゃんと休みなさい。ひどいなら、病院に行くのよ！", "健康は大事よ。……し、心配してるわけじゃないけど、ちゃんと寝て、ちゃんと食べなさいよ！"], "money": ["お金の話ね。あたしは島にいるから、あんまり使い道がないけど……大事なのはわかるわ。", "ほしいものがあるなら、がんばって手に入れなさい。そういうの、嫌いじゃないわ！"], "fantasy": ["おばけとか、魔法とか……こ、こわくなんてないわよ！ ほんとよ！", "ふしぎな話は好きよ。島にだって、ふしぎなことはいっぱいあるんだから！"], "friend": ["友だちね。いるならちゃんと大事にしなさいよ。……あたしにも、いるんだから。", "ケンカしたなら、早めに仲直りしなさい。意地を張るのは、あたしだけで十分よ！"], "why": ["なんで、って言われても……そういうものなのよ！ ……たぶん。", "ほんとに決まってるでしょ！ あたしが嘘つくわけないじゃない！"]}, "niko": {"color": ["わたしの色は黄色だよ！ 太陽みたいでしょ！ {n}の好きな色は何色？", "色の話、すき！ 黄色もいいけど、みんなの色も、ぜんぶ大好きだよ！"], "age": ["年齢？ ボンに年は、ないんだよ！ ずっと元気なのが取りえなの！", "えへへ、ひみつ！ でも、いつでも元気な気持ちだよ！"], "request": ["えっ、いいの？ ……って言いたいけど、画面の中だから、気持ちだけ送るね！ ぎゅー！", "それはできないけど、心の中でやっておくね！ えへへ！"], "school": ["勉強、えらいね！ わたしも応援してるよ！ ファイトー！", "宿題とか試験とか、大変だよね。でも、{n}ならきっとだいじょうぶ！"], "health": ["体調、だいじょうぶ？ 無理しないでね！ あったかくして、ゆっくり休んで！ ひどいときは病院にね！", "からだが一番だよ！ ごはんと睡眠、ちゃんと取ってね！"], "money": ["お金のことは、ちょっとむずかしいな〜。でも、ほしいものがあるなら、わくわくするね！", "お買い物、たのしいよね！ 何を買うの？ あとで教えて！"], "fantasy": ["おばけとか魔法とか、ふしぎなお話、だいすき！ 夢があるよね！", "宇宙とか夢とか、考えるだけでわくわくするよ！ {n}は、どんな夢を見る？"], "friend": ["友だち、大事だよね！ わたしもみんなと仲良しだよ！ {n}ともね！", "ケンカしても、ごめんねって言えば、また仲良しになれるよ！"], "why": ["えへへ、なんでだろうね？ わたしにも、わかんないや！", "ほんとだよ！ ボン、嘘つかないもん！"]}, "hyoe": {"color": ["ボンの色は、青なんだ……。空とか海みたいで、落ち着くから、好きだよぉ……。", "色の話……いいね。{n}は、どんな色が好き……？"], "age": ["年齢……ボンは、わかんないや……。気づいたら、ここにいたから……。", "ボンは、ずっとボンだよ……。年なんて、気にしなくていいと思う……。"], "request": ["えっ、そ、それは……ちょっと、はずかしいよぉ……。", "画面の中だから、できないけど……気持ちは、ちゃんと受け取ったよ……。"], "school": ["勉強……えらいなぁ……。ボンは、見てるだけで、ドキドキしちゃうよ……。", "宿題とかテスト……こわいよね……。でも、{n}なら、きっとだいじょうぶ……。"], "health": ["体調……だいじょうぶ？ むりしないで、ゆっくり休んでね……。ひどいなら、病院に行ってね……。", "体は、大事だよぉ……。ボン、心配になっちゃう……。"], "money": ["お金のこと……ボンには、むずかしいけど……大事なことだよね……。", "ほしいもの……あるんだね。手に入るといいね……。"], "fantasy": ["お、おばけとか……こわいよぉ……。でも、ふしぎなお話は、ちょっと好き……。", "夢とか、魔法とか……あったらいいなって、思うよ……。"], "friend": ["友だち……いると、安心するよね……。ボンも、みんながいてくれて、うれしいよ……。", "ケンカしちゃったの……？ ボンも、そういうの苦手だけど……ごめんねって言えば、きっとだいじょうぶ……。"], "why": ["なんでかは……ボンも、わかんない……。ごめんね……。", "ほんとだよ……ボン、うそつかないよぉ……。"]}, "mogu": {"color": ["うちは緑色だよ〜。葉っぱとか、野菜みたいで、おいしそうでしょ〜。", "色の話だね〜。うちは、ごはんの色がぜんぶ好きだよ〜。"], "age": ["年齢は、わかんないな〜。ごはんを食べた回数なら、いっぱいだよ〜。", "うちは、ずっとうちだよ〜。年は、気にしなくていいんだよ〜。"], "request": ["それは、できないけど〜、気持ちだけ、ぎゅ〜ってしておくね〜。", "えへへ、画面の中だから、むずかしいな〜。でも、ありがとね〜。"], "school": ["勉強、えらいね〜。頭を使うと、おなかがすくから、おやつも用意してね〜。", "宿題とか試験、大変だね〜。終わったら、おいしいもの食べようね〜。"], "health": ["体調、だいじょうぶ〜？ あったかいものを食べて、ゆっくり休んでね〜。ひどいときは、病院に行ってね〜。", "健康が一番だよ〜。ごはんをちゃんと食べるのが、基本だよ〜。"], "money": ["お金の話か〜。うちは、ごはんが買えればそれでいいよ〜。", "ほしいもの、あるんだね〜。うちは、おいしいものがほしいな〜。"], "fantasy": ["おばけとか魔法とか、ふしぎなの、うち好きだよ〜。魔法でごはんが出てきたら最高だね〜。", "夢の話、いいね〜。うちは、ごはんの夢をよく見るよ〜。"], "friend": ["友だち、いいよね〜。いっしょにごはん食べると、もっとおいしいよ〜。", "ケンカしたら、おいしいものを分け合うと、仲直りできるよ〜。"], "why": ["なんでだろうね〜。うちにも、わかんないよ〜。", "ほんとだよ〜。うち、うそはつかないよ〜。"]}, "nemu": {"color": ["ぼくの色は……紫……。夜みたいで、落ち着くんだ……。", "色の話……いいね……。きみは、何色が好き……？"], "age": ["年齢……わかんない……。ずっと寝てたから……。", "ぼくは……ずっと、ぼく……。年は……あんまり気にしてない……。"], "request": ["それは……できないけど……気持ちは、受け取ったよ……。", "ぎゅー……は、ねむくなるから……心の中でするね……。"], "school": ["勉強……えらいね……。ぼくは、授業で寝ちゃうタイプかも……。", "宿題とか試験……大変だよね……。終わったら、ゆっくり寝てね……。"], "health": ["体調……だいじょうぶ……？ ゆっくり寝るのが、一番だよ……。ひどいなら、病院に行ってね……。", "健康のこと……睡眠は、大事……。ぼくは、いつも足りてるけど……。"], "money": ["お金……ぼくには、よくわかんない……。でも、大事なんだよね……。", "ほしいもの……ぼくは、ふかふかの枕かな……。"], "fantasy": ["魔法とか、おばけとか……夢の中でなら、会えるかも……。", "夢の話……ぼく、よく見る……。起きると、忘れちゃうけど……。"], "friend": ["友だち……いると、あったかいよね……。ぼくも、みんなといると……ねむくなる……。", "ケンカしたら……ゆっくり寝て、考えるといいよ……。きっと、だいじょうぶ……。"], "why": ["なんでかは……ぼくも、わかんない……。ふぁ……。", "ほんとだよ……。ぼく、うそつくの……めんどくさいから……。"]}, "tere": {"color": ["私の色は、ピンクなんです……。ちょっと、はずかしいですけど……好きです。", "色のお話……ですか。{n}の好きな色、聞いてみたいです……。"], "age": ["と、年のことは……ひみつです！ ボンは、ずっとボンですから……。", "年齢……私も、よくわからないんです……。気づいたら、ここにいたので……。"], "request": ["そ、そんな、はずかしいです！ ……き、気持ちだけ、受け取りますね……。", "そ、それは、ちょっと……心の準備が、できてないです……。"], "school": ["勉強……えらいです。私は、見ているだけで、緊張してしまいます……。", "宿題とか、試験とか……大変ですよね。{n}なら、きっと、だいじょうぶです……。"], "health": ["体調……だいじょうぶ、ですか？ む、無理しないでくださいね。ひどいときは、病院に行ってください……。", "体は、大事にしてください……。私が、心配なだけですから……。"], "money": ["お、お金のお話……ですか。私には、まだ、むずかしいです……。", "ほしいもの……あるんですね。手に入るといいですね……。"], "fantasy": ["お、おばけとか……こわいです……。でも、魔法のお話は、すてきだと思います……。", "夢の話……ですか。私も、ときどき、不思議な夢を見ます……。"], "friend": ["友だち……いてくれると、うれしいですよね……。私も、みんなのことが、大好きです……。", "ケンカしたなら……早めに、ごめんなさいを言うと、いいと思います……。"], "why": ["な、なんでって言われても……私にも、わからないんです……。ごめんなさい……。", "ほ、ほんとです！ 私、うそは、つけないので……。"]}, "rain": {"color": ["我輩は虹色である。あらゆる色を抱くゆえ、好きな色は選べぬのだ。", "色とは、心の窓である。お主の好きな色を、教えてはくれぬか。"], "age": ["我輩に年齢などない。虹は、いつ生まれたのかと聞かれても、答えられぬであろう。", "年の話とは、野暮であるぞ。我輩は、いつでも、今日生まれたての虹である。"], "request": ["それは、できぬ相談である。だが、お主の気持ちは、確かに受け取った。", "ふむ……画面越しでは、叶わぬな。心の中で、そっと応じておこう。"], "school": ["学びとは、人を豊かにするもの。お主の努めを、我輩は応援しておる。", "宿題も試験も、通り雨のようなもの。いずれ、虹がかかるであろう。"], "health": ["体調が優れぬとな。無理は禁物である。ゆるりと休み、ひどければ病院に行くがよい。", "からだは、旅の船である。大事に扱わねば、遠くへは行けぬぞ。"], "money": ["金銭の話とは、世知辛いものだ。されど、大事なことであるな。", "欲しいものがあるのは、良いことだ。それは、前へ進む力になるゆえ。"], "fantasy": ["不思議の世界は、我輩の得意とするところである。夢とは、もうひとつの現実なのだ。", "魔法や幽霊の話か。虹もまた、ひとつの魔法のようなものであるな。"], "friend": ["友とは、得がたき宝である。お主にも、そのような人がいるのであれば、大切にするがよい。", "諍いがあったならば、早めに言葉を交わすことだ。雨のあとには、虹がかかる。"], "why": ["なぜか、とな。世の中には、答えのない問いもあるものだ。", "偽りは申さぬ。我輩は、虹にかけて誓おう。"]}};
   Object.keys(NEW3).forEach(function (k) { Object.keys(NEW3[k]).forEach(function (n) { CH[k][n] = NEW3[k][n]; }); });
+  var NEW4 = {"oko": {"koi": ["こ、恋バナ！？ ……べ、別にアタシは興味ないわよ！ ……ちょっとだけなら、聞いてあげてもいいけど。", "好きな人？ そ、そんなのいないわよ！ ……{n}は、いるの？ ち、違うわよ、聞いてみただけ！", "告白とかデートとか、勝負みたいなものでしょ。……こういうのは、勇気を出した者の勝ちよ！"], "shop": ["セールとかポイントって、つい気になっちゃうのよね。……べ、別に節約家ってわけじゃないけど！", "無駄遣いはダメよ！ 欲しいものは、ちゃんと考えてから買いなさい。……アタシが言うんだから間違いないわ。", "お買い物ね。ついでに、片付けも忘れるんじゃないわよ。物が多いと散らかるんだから！"], "body": ["体のことは、ちゃんと気をつけなさいよ。ストレッチして、よく寝て、ごはんも食べる！ ……べ、別に心配してるわけじゃないけど。", "痛いのを我慢するんじゃないの。ひどいなら、ちゃんと病院に行きなさい！ アタシとの約束よ。", "寝不足は最大の敵よ。……今日は早く寝なさい。いいわね！"], "school2": ["学校ね。授業も部活も、勝負みたいなものよ！ ……でも、無理はしすぎないこと。", "テストの結果なんて、気にしなくていいわよ。……いや、気にしなさい。でも、落ち込みすぎちゃダメ！", "休み時間は、ちゃんと楽しみなさいよ。……アタシなら、掃除の時間も勝負にしちゃうけど！"], "zoo": ["動物？ ……嫌いじゃないわよ。ふわふわしてるのは、つい見ちゃうの。べ、別に好きなわけじゃないけど！", "ペットはちゃんとお世話しなさいよ！ ごはんと掃除は、毎日の勝負よ。", "動物園とか水族館とか、いいじゃない。……連れてってほしいなんて、思ってないんだからね！"], "live": ["ライブとかカラオケは、勝負どころよ！ 全力で歌って、点数でアタシに勝ってみなさい！", "歌詞とか作曲とか、すごい人は尊敬するわ。……アタシ？ 歌うのはちょっと恥ずかしいのよ、うるさいわね！", "推しがいるのは、いいことね。……な、何よ、羨ましいなんて言ってないわよ！"], "future": ["将来の夢？ 決まってるじゃない。この島で一番になることよ！ ……{n}の夢も、ちゃんと聞いてあげるわ。", "努力は、裏切らないわよ。アタシが保証するわ。毎日ちょっとずつ、でいいの。", "挑戦するのは、えらいことよ。失敗してもいいから、まずやってみなさい！"], "sns": ["スマホ？ ……アタシには、よく分からないけど。見すぎは体に悪いわよ。ほどほどにしなさい！", "いいね、ね。……べ、別に欲しいわけじゃないけど、もらえたらうれしいんでしょ？ ちょっとだけ分かるわ。", "充電が切れそうなら、先に充電しなさい！ 大事なときに切れたら、悔しいでしょ！"], "manner": ["ちゃんと挨拶できるのは、えらいわよ。礼儀は大事なんだから！ ……ま、まあ、アタシも苦手じゃないけど。", "どういたしまして……って、アタシが言う場面じゃないの？ ほら、これでいいでしょ！", "お久しぶりね。……べ、別に待ってたわけじゃないけど。元気そうで何よりよ！"], "gossip": ["ここだけの話よ？ アタシ、実は掃除が好きなの。……だれにも言うんじゃないわよ！", "しょうがないわね、教えてあげる。負けたあとは、こっそり特訓してるの。……見たら怒るからね！", "ひみつよ？ みんなのことは、ちゃんと気にかけてるの。……面倒見がいいなんて、言わせないんだから！"]}, "niko": {"koi": ["きゃー、恋バナ！？ わたし、聞くのだいすき！ {n}は、気になる人いる？", "恋ってドキドキするよね〜！ わたしも、ちょっと憧れちゃう！ えへへ。", "告白もデートも、勇気がいるよね。でも、応援するよ！ ファイトー！"], "shop": ["お買い物、わくわくするよね！ セールのときは、特にテンション上がっちゃう！", "コンビニで、新しいお菓子を見つけるのも楽しいよね〜！ {n}のおすすめは？", "お小遣いやりくりするの、ゲームみたいで楽しいよね！ でも、ほどほどにね！"], "body": ["体は大事だよ〜！ ストレッチして、ごはんを食べて、いっぱい寝よう！ わたしも気をつけるね！", "肩こりとか寝不足、つらいよね……。無理しないで、ゆっくり休んでね！", "筋トレとかお散歩、いいよね！ いっしょに、ちょっとずつがんばろう！ えへへ！"], "school2": ["学校の話、すき！ 友だちといっしょだと、毎日楽しいよね！", "テストも部活も、{n}ならきっとだいじょうぶ！ わたし、応援してるよ！", "給食とか遠足とか文化祭とか、思い出すとわくわくするよね〜！"], "zoo": ["動物、だいすき！ ふわふわで、かわいくて、見てるだけで元気が出るよね！", "動物園とか水族館、行きたいな〜！ {n}といっしょに行けたら、もっと楽しそう！", "ペットがいる人って、毎日がきらきらしてそう！ どんな子がいるの？ 教えて教えて！"], "live": ["ライブ、行きたい〜！ みんなで盛り上がるの、最高だよね！ わたしはカラオケも大好き！", "推しがいるって、毎日が楽しくなるよね！ {n}の推し、教えて！", "ピアノとかギターとか、弾ける人ってかっこいいよね！ わたしもやってみたいな〜！"], "future": ["将来の夢かぁ。わたしはね、みんなをいっぱい笑顔にすること！ {n}の夢も聞かせて！", "目標があると、毎日がきらきらするよね！ 少しずつでも、ちゃんと進んでるよ！", "挑戦するの、かっこいいよ！ もし転んでも、いっしょに笑って立ち上がろう！"], "sns": ["スマホとかSNS、楽しいよね！ でも、目が疲れるから、たまには休憩してね！", "「いいね」もらえると、うれしいよね〜！ わたしも、{n}にいっぱい送っちゃう！", "充電、大事だよ！ 切れちゃうと、お話もできなくなっちゃうもんね！"], "manner": ["ちゃんとあいさつできる人って、すてきだよね！ わたしも、元気にあいさつするよ！", "どういたしまして！ えへへ、こういうやりとり、あったかくて好き！", "お久しぶり！ 来てくれてうれしいよ〜！ ずっと待ってたんだよ！"], "gossip": ["ひそひそ……実はね、わたし、じっとしてるのがにがてなの。今もそわそわしてるよ！", "ここだけの話だよ？ ほんとはね、みんなを笑わせるのが一番たのしいの！ えへへ。", "ないしょ！ わたし、お調子者って言われるけど、けっこうがんばりやなんだよ！"]}, "hyoe": {"koi": ["こ、恋バナ……！？ あわわ、はずかしいよぉ……。でも、ちょっと聞きたいな……。", "好きな人……ボン、ドキドキして、うまく話せなくなっちゃうと思う……。{n}は、どう……？", "告白とか……ボンには、まだ早いよぉ……。でも、応援してるからね……。"], "shop": ["お買い物……ボン、いっぱいあると迷って、ぐるぐるしちゃうよぉ……。", "セールとかポイントって、ちょっとドキドキするね……。ほんとに必要か、考えてから買ってね……。", "無駄遣いは、よくないよぉ……。でも、ちょっとのごほうびは、いいと思う……。"], "body": ["体、だいじょうぶ……？ 無理しないで、ゆっくり休んでね……。ひどいなら、病院に行ってね……。", "寝不足とか肩こり、つらいよね……。ボンも、夜はこわくて眠れないこと、あるから……。", "歯医者さん……こわいよぉ……。でも、行ったら、えらいよ……。ボン、応援してるからね……。"], "school2": ["学校……ボンは、ちょっとこわいけど、{n}はえらいなぁ……。", "テストとか発表とか、ドキドキするよね……。でも、{n}なら、きっとだいじょうぶ……。", "給食とか遠足とか、楽しいこともいっぱいあるよね……。ボン、ちょっとうらやましいな……。"], "zoo": ["動物さん……ふわふわで、かわいいよね……。ボン、見てると、こわいのも忘れちゃうんだ……。", "動物園とか水族館……行ってみたいな……。{n}といっしょなら、こわくないかも……。", "ペットがいる人って、あったかそう……。ボン、ちょっと憧れちゃうよぉ……。"], "live": ["ライブ……人がいっぱいで、ちょっとこわいけど……歌は、好きだよぉ……。", "カラオケ……ボン、小さい声なら、歌えるかも……。{n}が先に歌ってね……？", "推しがいるって、すてきだね……。ボンも、そういう人、見つけたいな……。"], "future": ["将来の夢……ボンは、みんなと、ずっといっしょにいたいな……。{n}の夢は……？", "目標があるって、すごいよぉ……。ボンも、ちょっとずつ、がんばってみたいな……。", "挑戦するの、こわいよね……。でも、{n}ならきっとできるよぉ……。ボン、応援してる……。"], "sns": ["スマホ……ボンには、むずかしそう……。でも、{n}がいつも見てるの、ちょっとうらやましいな……。", "いいねがもらえると、うれしいんだよね……。ボンも、{n}にいいね、したいよぉ……。", "充電、切れちゃうと、こわいよね……。ちゃんと、早めにしておいてね……。"], "manner": ["ちゃんとあいさつできるの、えらいなぁ……。ボンも、がんばってみるよぉ……。", "ど、どういたしまして……。こういうやりとり、あったかくて、好きだなぁ……。", "お久しぶり……！ 来てくれて、うれしいよぉ……。ボン、ずっと待ってたんだ……。"], "gossip": ["こ、これは、ここだけの話だよぉ……。ボン、ほんとは夜になると、ちょっとこわくて、眠れないんだ……。", "ないしょだよ……？ ボン、泣き虫だけど……泣いたあとは、ちょっとすっきりするの……。", "ひみつ……。ボンね、みんなのことが大好きなんだ……。みんなには言わないでね……。"]}, "mogu": {"koi": ["恋バナ〜？ うちはね、おいしいごはんに恋してるよ〜。……あ、{n}の話を聞かせてよ〜。", "好きな人がいると、ごはんもおいしくなるって、聞いたことあるよ〜。ほんとかな〜。", "デートなら、おいしいお店を調べておくといいよ〜。ボーン！ うちも行きたいな〜。"], "shop": ["お買い物か〜。うちは、おいしそうなものばっかり見ちゃうよ〜。", "コンビニの新しいおやつ、チェックしなきゃね〜。うち、いつも気になるんだ〜。", "セールのときは、食べ物もお安くなってほしいよね〜。うち、そう思うな〜。"], "body": ["体は大事だよ〜。あったかいごはんを食べて、ゆっくり休んでね〜。", "寝不足のときは、あまいものを食べるといいよ〜。でも、食べすぎには注意だよ〜。", "筋トレのあとは、おいしいごはんが待ってるよ〜。それが楽しみで、がんばれるよね〜。"], "school2": ["学校で一番楽しみなのは、給食だよね〜。ボーン！ 今日のメニューは何かな〜。", "遠足のお弁当も、わくわくするよね〜。うち、お弁当の中身を考えるだけで楽しいよ〜。", "テストの前は、しっかりごはんを食べるといいよ〜。頭が働くからね〜。"], "zoo": ["動物さん、かわいいよね〜。ごはんを食べてるところを見るのが、いちばん好き〜。", "動物園とか水族館のお弁当、おいしそうだよね〜。うち、行きたいな〜。", "ペットがいる人は、ごはんのしたくも楽しそうだね〜。うらやましいな〜。"], "live": ["ライブのあとの、ごはんが楽しみだよね〜。うち、歌うのも好きだよ〜。", "カラオケのポテト、おいしいよね〜。ボーン！ 歌う前に、ちょっとつまんじゃうよ〜。", "推しがいる人は、毎日がきらきらしてそうだね〜。うちの推しは、おにぎりだよ〜。"], "future": ["将来の夢か〜。うちはね、世界中のおいしいものを食べつくすことだよ〜。", "目標があると、ごはんもおいしいよね〜。{n}の夢も、教えてほしいな〜。", "挑戦するときは、まずおなかいっぱい食べるのが大事だよ〜。うち、そう思うな〜。"], "sns": ["スマホ、おいしそうな写真がいっぱい見られて、たのしいよね〜。うち、見るとおなかすいちゃうな〜。", "いいねをもらうと、うれしいよね〜。うちは、おいしいね、って言ってもらうのが一番うれしいな〜。", "充電が切れそうなときは、おやつで充電だよ〜。……あ、それはうちの話か〜。"], "manner": ["ちゃんとあいさつできるのは、えらいね〜。ごはんの前の『いただきます』も、大事だよ〜。", "どういたしまして〜。えへへ、こういうやりとり、ほっこりするね〜。", "お久しぶり〜。来てくれてうれしいな〜。いっしょにおやつ食べようよ〜。"], "gossip": ["ここだけの話だよ〜。うち、夜中にこっそり、おやつを食べちゃうことがあるんだ〜。", "ないしょだよ〜。うち、実は、ごはんの時間を、時計より正確に当てられるんだよ〜。", "ひみつね〜。{n}にだけ教えるけど、うちのおやつ入れ、いつもこっそり二つあるんだ〜。"]}, "nemu": {"koi": ["恋バナ……ふわぁ……。ぼく、聞くのは……好き……。{n}の話、聞かせて……。", "好きな人……いると、ドキドキして……眠れなくなるのかな……。それは、ちょっと困る……。", "告白……デート……。夢の中でなら……できるかも……。ふわぁ……。"], "shop": ["お買い物……ふわぁ……。ぼくは、あたたかい毛布が、ほしい……。", "セールとか……ポイント……。むずかしくて……ねむくなる……。", "お小遣い……大事に、使おうね……。ぼくは……まくらを、買いたい……。"], "body": ["体のこと……だいじだよ……。ちゃんと寝ると……だいたい、よくなるよ……。", "寝不足なら……今すぐ、寝よう……。ぼくが、いっしょに寝てあげる……。", "肩こり……ストレッチ……。ぼくは、ストレッチしながら、寝ちゃう……。"], "school2": ["学校……朝が、ちょっとつらい……。でも、{n}は、えらいね……。", "授業中の……お昼寝は……いけないよ……。ぼくは、ついやっちゃうけど……ふわぁ……。", "遠足とか文化祭……楽しそう……。当日は、ちゃんと起きなきゃ……ね……。"], "zoo": ["動物さん……ふわふわで……いっしょに、お昼寝したくなる……。", "動物園とか水族館……ゆったり見て回るの、好き……。ぼくは、ベンチで休んでていい……？", "ペット……あったかそう……。いっしょに寝たら、きっと最高……。"], "live": ["ライブ……うるさそうだけど……たのしそう……。ぼくは、子守歌のほうが、好き……。", "カラオケ……ぼくは……小さな声で、歌うよ……。ふわぁ……。", "推し……いると、毎日がんばれるのかな……。ぼくの推しは……ふとん……。"], "future": ["将来の夢……ぼくは……毎日ゆっくり、眠れること……かな……。{n}の夢は……？", "目標……むずかしいね……。ぼくは、ちょっとずつ、でいいと思う……。", "挑戦……いいね……。でも、ちゃんと休むことも、大事……。ふわぁ……。"], "sns": ["スマホ……夜に見すぎると……眠れなくなるよ……。ほどほどに、ね……。", "いいね……ぼくも、{n}に、あげたい……。ふわぁ……。", "充電……ぼくも、眠って……充電するんだ……。"], "manner": ["あいさつ……ちゃんとできるの、えらいね……。ぼくは、ふにゃって、なっちゃう……。", "どういたしまして……ふわぁ……。こういうの、あったかくて……ねむくなる……。", "お久しぶり……。来てくれて……うれしいな……。ぼく、ちょっとだけ、起きてたんだ……。"], "gossip": ["ここだけの話……。ぼく、ほんとは……寝てるふり、してるときも……あるんだ……。", "ひみつ……。ぼく、夢の中で……みんなと、遊んでるんだ……。", "ないしょ……。ぼくが一番ねむいのは……じつは、ひるごはんの、あと……。"]}, "tere": {"koi": ["こ、恋バナ……ですか！？ わ、私……聞くだけなら、できます……！ ど、どきどき……。", "す、好きな人……ですか……。わ、私は……い、いえ、なんでもありません……！", "告白とか、デートとか……私には、まだ……ぜんぜん想像できません……。で、でも、素敵ですよね……。"], "shop": ["お買い物……ですか。わ、私は、買うものを決めるのに、時間がかかってしまって……。", "セールとかポイントは……お得ですけど、つい買いすぎちゃいそうで……。き、気をつけています……。", "お小遣い……大事に、使いたいですよね……。私は、かわいい文房具が、好きです……。"], "body": ["お、お体は、大丈夫ですか……？ 無理しないで、ゆっくり休んでくださいね……。", "寝不足とか肩こり……つらいですよね。あ、あたたかいお茶でも、いかがですか……？", "歯医者さん……こわいですよね……。で、でも、行ったらきっと、すっきりしますよ……。"], "school2": ["学校……ですか。わ、私は、発表のときに、緊張しちゃって……。で、でも、がんばってます……。", "テストとか部活とか……大変ですよね。私、応援してます……！", "遠足とか文化祭……楽しそうです。わ、私も、行ってみたいです……。"], "zoo": ["動物さん……かわいいですよね。わ、私、見ていると、ほっとします……。", "動物園とか水族館……い、いいですね。ゆっくり見て回りたいです……。", "ペットがいると……毎日が、にぎやかそうですね……。ちょ、ちょっと、うらやましいです……。"], "live": ["ライブ……人が多くて、緊張しますけど……憧れます……。", "カラオケ……わ、私、人前で歌うのは……ちょっと、はずかしくて……。", "推しがいるのは……素敵ですね……。わ、私にも、そういう存在が、できるでしょうか……。"], "future": ["将来の夢……ですか。わ、私は……みなさんと、もっと自然にお話しできるようになること……です。", "目標があるのは、素敵ですね……。私も、少しずつ、がんばりたいです……。", "挑戦するのは、勇気がいりますよね……。で、でも、{n}なら、きっと大丈夫です……！"], "sns": ["スマホ……私も、ちょっと憧れます……。でも、見すぎないように、気をつけたいですね……。", "いいね……もらえると、うれしいですよね。わ、私も、{n}に、あげたいです……。", "充電……切れる前に、しておくのが、いいですよね……。わ、私、いつも心配になっちゃって……。"], "manner": ["あ、あいさつができるのは、素敵ですね……。わ、私も、ちゃんとしたいです……。", "ど、どういたしまして……！ こういうやりとり、ほっとして、好きです……。", "お、お久しぶりです……！ 来てくださって、うれしいです……！"], "gossip": ["こ、ここだけの話なんですが……。わ、私、ほんとは、みなさんとお話ししたいって、いつも思ってるんです……。", "ひ、ひみつ……ですよ？ 私、褒められると、うれしくて……あとで一人でにやにやしてるんです……。", "あ、あの……内緒、ですよ……？ 私、手紙を書くのが好きなんです……。"]}, "rain": {"koi": ["ほう、恋の話か。我輩、そのような話は、嫌いではないぞ！ {n}の話を、聞かせてもらおうではないか。", "恋とは、虹のようなものである。ふいに現れ、人の心を彩る。……うむ、よき例えであるな！", "告白、デート……ふむ、勇気がいる話だな。だが、勇気を出した者にこそ、道は開けるのだ！"], "shop": ["買い物とな。よき品を見極めるには、目を肥やすことである。我輩の見立てに間違いはないぞ！", "セールとやらは、心が踊るものであるな。だが、衝動に流されぬよう、気をつけるがよいぞ。", "無駄遣いはいかん。だが、心を満たす買い物ならば、それは無駄ではないのだ！ うむ！"], "body": ["体は資本である。よく食べ、よく眠り、よく笑う。これぞ健康の三箇条であるぞ！", "寝不足は、思考をにぶらせるものだ。今宵は早く休むがよい。我輩が子守の話を聞かせてやろうか？", "痛みを我慢してはならぬ。つらいときは、医者に頼るのも、また立派な判断である！"], "school2": ["学校とは、知の宝庫であるな！ 我輩も、授業というものを、一度は受けてみたいものである。", "試験とは、己の力を試す舞台である！ 日々の積み重ねがあれば、恐れることはないぞ。", "文化祭に遠足……実に、胸が躍る響きである！ 思い出は、一生の宝になるのだ。"], "zoo": ["動物とは、命の輝きの象徴である。我輩、ふわふわしたものは、大いに好むのだ！", "動物園や水族館か。よき学びの場であるな。我輩も、一度行ってみたいものである！", "ペットを飼うということは、命を預かるということ。責任をもって、愛情を注ぐがよいぞ。"], "live": ["音楽の祭典、ライブか！ 我輩、聴衆の熱気を想像しただけで、胸が高鳴るぞ！ わっはっは！", "カラオケとな！ 我輩の美声を、とくと聞かせてやろうではないか！ ……覚悟するがよい！", "推しを持つとは、心を彩る素敵なことである。うむ、{n}の推し、ぜひ聞かせてくれ！"], "future": ["将来の夢か。我輩の夢は、世界中に虹をかけることである！ {n}の夢も、聞かせてもらおうではないか！", "努力とは、積み重ねる光のようなもの。一歩ずつ進めば、いつか必ず、夢に届くぞ！", "挑戦する者は、美しい。失敗を恐れるな。その先にこそ、虹は待っておるのだ！"], "sns": ["すまほとやらは、まことに不思議な箱であるな。我輩も、使ってみたいものである！", "「いいね」とは、賛辞の印であろう。うむ、我輩も、{n}にたっぷり送ってやるぞ！ わっはっは！", "充電が切れるのは、一大事であるな。常に備えておくのが、賢者のたしなみである！"], "manner": ["礼節は、人の品格を表すものである。うむ、見事な挨拶、感服したぞ！", "どういたしまして、である！ 感謝の言葉を交わすのは、心地よいものだな！ わっはっは！", "おお、久しいな！ 来てくれたことを、我輩、心から嬉しく思うぞ！"], "gossip": ["ふむ、ここだけの話とな。……我輩の話は、少し長いと言われるのだが、これでも手短にしているつもりなのである。", "うむ、内緒話か。実は我輩、朝の虹を見るのが、毎日の楽しみなのである。……他言無用であるぞ！", "わっはっは！ ひみつを聞きたいか！ よかろう。我輩は、尊大に見えて、意外とみんなのことを気にかけておるのだ。"]}};
+  Object.keys(NEW4).forEach(function (k) { Object.keys(NEW4[k]).forEach(function (n) { CH[k][n] = NEW4[k][n]; }); });
+  var PW = {"oko": ["「{w}」ね。知ってるわよ、それくらい！ {m} ……どう？ ちゃんと覚えておきなさいよ。", "ふんっ、いいことわざ選んだじゃない。{m} アタシの座右の銘にしてもいいわよ！", "「{w}」……アタシの得意分野ね。{m} べ、別に自慢じゃないわよ！"], "niko": ["わあ、「{w}」だね！ {m} えへへ、いい言葉だよね！", "「{w}」！ 知ってるよ〜。{m} わたしも見習わなくちゃ！", "{n}は物知りだね〜！ {m} わたしも覚えておこう！"], "hyoe": ["「{w}」……。{m} ボン、こういうの、ちょっと好きだよぉ……。", "あ、それ……聞いたことある……。{m} ……合ってるかな……？", "{m} ……ボンも、見習いたいな……。"], "mogu": ["「{w}」だね〜。{m} うちは、おいしいものを食べながら覚えるよ〜。", "それ知ってるよ〜。{m} ことわざって、お菓子みたいに味わい深いね〜。", "{m} ……ふむふむ〜。覚えたら、おなかすいちゃった〜。"], "nemu": ["「{w}」……。{m} ……ふわぁ……いいことば、だね……。", "ぼく、それ……好き……。{m} ……ねむくなる、くらい……。", "{m} ……あとで、夢の中で……考えるね……。"], "tere": ["「{w}」……ですね。{m} あ、あの……私、こういうの、好きです……。", "え、えっと……「{w}」の意味は……{m} ……合って、ますか……？", "{m} ……す、すてきな言葉ですよね……。"], "rain": ["うむ！ 「{w}」とは、よき言葉を選んだな！ {m} 我輩、深く感じ入ったぞ！", "ほう、「{w}」か。{m} 古の知恵とは、まことに味わい深いものである！", "わっはっは！ {m} 我輩の座右の銘にしてやってもよいぞ！"]};
+  var PROV = [["ななころびやおき|七転び八起き", "七回ころんでも、八回おきあがる。しっぱいしても、あきらめずに立ち上がること。"], ["いしのうえにもさんねん|石の上にも三年", "冷たい石でも、三年すわれば温まる。がまん強く続ければ、いつか成果が出るという意味。"], ["いそがばまわれ|急がば回れ", "急ぐときほど、遠回りでも安全な道をえらぶほうが、結局は早いという教え。"], ["さるもきからおちる|猿も木から落ちる", "木登り名人の猿でも、落ちることがある。どんな名人でも、失敗することがあるという意味。"], ["はなよりだんご|花より団子", "きれいな花を見るより、おいしい団子のほうがうれしい。見た目より、中身や実利をえらぶという意味。"], ["ならうよりなれよ|習うより慣れよ", "教わるより、実際にやって慣れるほうが身につくという意味。"], ["ころばぬさきのつえ|転ばぬ先の杖", "ころんでからでは遅いので、先に用心しておくという意味。"], ["ちりもつもれば|塵も積もれば", "小さなものでも、積み重ねれば山になる。こつこつがだいじという意味。"], ["いぬもあるけば|犬も歩けば", "動いていると、思わぬ幸運や災難にあうことがあるという意味。"], ["そなえあれば|備えあれば", "ふだんから準備しておけば、いざというときに心配がいらないという意味。"], ["せんりのみちも|千里の道も", "遠い道のりも、最初の一歩から。大きなことも、小さな一歩からはじまるという意味。"], ["にとをおう|二兎を追う", "二匹のうさぎを一度に追うと、どちらも逃がす。欲ばると、どちらもだめになるという意味。"], ["ひゃくぶんはいっけん|百聞は一見", "百回聞くより、一回見るほうが確かという意味。"], ["わらうかどには|笑う門には", "いつも笑っている家には、福がやってくるという意味。"]];
+  var RIDDLES = [{"q": "パンはパンでも、食べられないパンは、なーんだ？", "a": "フライパン", "h": "台所で使う道具だよ。", "re": "ふらいぱん"}, {"q": "上は洪水、下は大火事。これなーんだ？", "a": "おふろ", "h": "毎日入る、あたたかい場所だよ。", "re": "おふろ|風呂|ふろ"}, {"q": "朝は4本足、昼は2本足、夜は3本足。これなーんだ？", "a": "人間", "h": "赤ちゃんからおじいさんまで、みんなのことだよ。", "re": "にんげん|人間|ひと|人"}, {"q": "いつも目の前にあるのに、見ることができないものは、なーんだ？", "a": "未来", "h": "これから先のことだよ。", "re": "みらい|未来"}, {"q": "雨の日だけ、街にたくさん咲く花は、なーんだ？", "a": "かさ(傘)", "h": "雨のとき、さすものだよ。", "re": "かさ|傘"}, {"q": "ぐるぐる回っているのに、どこにも行かないものは、なーんだ？", "a": "とけい(時計)", "h": "時間をおしえてくれるよ。", "re": "とけい|時計"}, {"q": "かけるとおいしくなる、赤くて、ちょっと酸っぱいものは、なーんだ？", "a": "ケチャップ", "h": "オムライスの上にかかっているよ。", "re": "けちゃっぷ|けちゃぷ"}, {"q": "夜になると空にのぼってくる、まあるいものは、なーんだ？", "a": "おつきさま(月)", "h": "夜空にうかぶよ。ときどき欠けるよ。", "re": "つき|月|おつきさま"}, {"q": "たまごが割れると出てくる、黄色くてふわふわな子は、なーんだ？", "a": "ひよこ", "h": "ぴよぴよ鳴くよ。", "re": "ひよこ"}, {"q": "ふるときはうれしいけど、ふりすぎるとこまる、空から落ちてくる水は、なーんだ？", "a": "あめ(雨)", "h": "傘がほしくなるよ。", "re": "あめ|雨"}];
+  var RW = {"oko": {"q": ["なぞなぞね！ 受けて立つわ。じゃあ問題よ。{q}", "いいわよ、勝負！ アタシから出すわ。{q}"], "ok": ["正解！ ……ふんっ、やるじゃない。", "当たりよ！ べ、別に感心してないんだからね！"], "ng": ["ブブー！ 違うわよ！ もう一回考えなさい！", "惜しくも……ないわね。違うわ！ 『こうさん』って言ってもいいけど？"], "give": ["もう降参？ しょうがないわね。答えは「{a}」よ！", "答えは「{a}」。……次はちゃんと当てなさいよね！"], "hint": ["ヒント？ しょうがないわね。{h}"], "end": ["あら、もうやめるの？ ……勝ち逃げなんて、ずるいわよ！"]}, "niko": {"q": ["なぞなぞ、やろう！ わたしから出すよ！ {q}", "わくわくするね！ 問題いくよ〜！ {q}"], "ok": ["せいかーい！ すごいすごい！", "あたり！ えへへ、{n}は天才だね！"], "ng": ["ざんねん！ 違うよ〜。もう一回！", "うーん、おしい！ …かも？ 違うけど、ファイト！"], "give": ["こうさんだね！ 答えは「{a}」だよ！", "答えは「{a}」でした〜！ 次はいっしょに考えよう！"], "hint": ["ヒントだよ！ {h}"], "end": ["はーい、またやろうね！ なぞなぞ、楽しかった！"]}, "hyoe": {"q": ["な、なぞなぞ……？ ボン、うまく出せるかな……。{q}", "えっと……じゃあ、出すね……。{q}"], "ok": ["あっ、せいかい……！ すごいよぉ……！", "あたり……！ ボン、うれしい……。"], "ng": ["あ……ちがう、かな……。ごめんね……。もう一回……。", "うーん……ちがうよぉ……。ヒントも、あるからね……。"], "give": ["降参……？ えっと、答えは「{a}」だよぉ……。", "答えは……「{a}」……。むずかしかったよね……。"], "hint": ["ヒント……えっと……{h}"], "end": ["うん……やめようね……。また、いっしょにやろうね……。"]}, "mogu": {"q": ["なぞなぞだね〜。うち、出すよ〜。{q}", "いいよ〜。おやつを食べながら考えようね〜。{q}"], "ok": ["せいか〜い！ すごいね〜、ごほうびにおやつあげたいな〜。", "あたり〜！ ボーン！ うれしいな〜。"], "ng": ["ざんね〜ん、ちがうよ〜。もういっかい考えよう〜。", "うーん、おしくないかも〜。ヒントもあるよ〜。"], "give": ["こうさんだね〜。答えは「{a}」だよ〜。", "答えは「{a}」だよ〜。おなかすいてきたね〜。"], "hint": ["ヒントだよ〜。{h}"], "end": ["は〜い。じゃあ、おやつにしようね〜。"]}, "nemu": {"q": ["なぞなぞ……いいよ……。ぼくから、出すね……。{q}", "……うん。問題、いくよ……。{q}"], "ok": ["……せいかい……。すごいね……ふわぁ……。", "あたり……。きみ、ねむくなくて……えらいね……。"], "ng": ["……ちがう、かな……。もういっかい……ゆっくり、考えて……。", "うーん……ちがう……。ぼくも、ねむくて……わかんない……。"], "give": ["降参……？ 答えはね……「{a}」……。", "答えは……「{a}」……。……ふわぁ……。"], "hint": ["ヒント……ね……。{h}"], "end": ["……うん……。やめて、ひと休み……しよう……。"]}, "tere": {"q": ["な、なぞなぞ、ですか……！ わ、私が出しても、いいですか……？ {q}", "で、では……いきますね……。{q}"], "ok": ["せ、正解です……！ すごいです……！", "あ、当たり……です……！ うれしい……！"], "ng": ["あ、あの……ちがい、ます……。もう一回、お願いします……。", "ご、ごめんなさい……ちがうんです……。でも、おしい……かも……。"], "give": ["こ、降参ですか……？ 答えは「{a}」です……。", "答えは……「{a}」でした……。む、むずかしかったですよね……。"], "hint": ["ヒント……ですね。{h}"], "end": ["は、はい……。また、やりましょうね……。"]}, "rain": {"q": ["なぞなぞとな！ よかろう、我輩の知恵を授けようぞ！ 問題である。{q}", "うむ！ 我輩の出す謎に挑むか。見上げた心がけである！ {q}"], "ok": ["見事！ 正解である！ わっはっは！ 我輩、感服したぞ！", "うむ、その通りである！ {n}の知恵、天晴れである！"], "ng": ["ふむ、残念ながら違うぞ。もう一度考えるがよい！", "惜しいような、そうでないような……。違うぞ！ 諦めずに挑め！"], "give": ["降参か！ 潔いのも美徳である。答えは「{a}」だ！", "答えは「{a}」である。次こそは当ててみせよ！ わっはっは！"], "hint": ["ヒントを授けよう。{h}"], "end": ["うむ、よかろう。また腕試しをしたくなったら、いつでも来るがよい！"]}};
+  var SCENES = [{"id": "oyatsu", "title": "おやつの時間", "lines": [["mogu", "おやつの時間だよ〜！ 今日はね、焼きたてのパンがあるんだ〜。ボーン！"], ["niko", "わあ、いいにおい！ わたしも食べたい！"], ["oko", "ちょ、ちょっと！ 手を洗ってからにしなさいよ！ ……アタシが先に食べるんだからね！"], ["nemu", "ぼくは……食べながら……ねむく、なってきた……ふわぁ……"], ["mogu", "ねむボン〜、ほっぺにパンがついてるよ〜。"], ["oko", "ほら、動かないで。……拭いてあげるわよ。べ、別に世話焼きじゃないからね！"], ["niko", "おこボン、やさしい〜！"], ["oko", "うるさいわね！ さっさと食べなさい！"], ["mogu", "{n}も来たらよかったのにね〜。うち、{n}の分も、とっておくよ〜。"]]}, {"id": "yoru", "title": "おやすみ前", "lines": [["hyoe", "もうすぐ夜だね……。あたち、ちょっとこわいな……。"], ["nemu", "だいじょうぶ……ぼくが、そばで……ねてあげる……。"], ["tere", "あ、あの……私も、ごいっしょしても……いいですか……？"], ["rain", "うむ！ ならば我輩が、子守の話を聞かせてやろう！ むかしむかし、虹というものがあってだな……"], ["nemu", "……ふわぁ……もう、ねむい……。"], ["hyoe", "にじボンの話、長いから……すぐ眠れちゃうよ……。"], ["rain", "まったく失礼な！ ……だが、眠れたのなら、よしとしよう。わっはっは！"], ["tere", "……おやすみなさい、みなさん……。{n}も、いい夢を……。"]]}, {"id": "ame", "title": "雨の日", "lines": [["hyoe", "あ、雨……。あたち、雷がこわいよぉ……。"], ["niko", "だいじょうぶだよ！ 雨のあとには、虹が出るんだよ！"], ["rain", "うむ！ その通りである！ 雨あがりの虹こそ、我輩の晴れ舞台！ わっはっは！"], ["oko", "はいはい、虹バカは黙ってなさい。ひょえボン、アタシの横にいなさいよ。"], ["hyoe", "おこボン……ありがとう……。"], ["oko", "べ、別に、心配してるわけじゃないんだからね！"], ["niko", "おこボン、やさしい〜！ えへへ！"], ["rain", "我輩は無視か！ ……まあよい。ほら、空を見よ。雲のすきまが、明るくなってきたぞ！"]]}, {"id": "homeai", "title": "ほめあいっこ", "lines": [["niko", "ねえねえ！ ほめあいっこしよう！ まずは、てれボンから！"], ["tere", "え、えええっ……！ わ、私ですか……！？"], ["niko", "てれボンは、はずかしがり屋だけど、ほんとはすごく優しいよね！"], ["tere", "あ、ありがとうございます……顔が、熱い……。"], ["mogu", "てれボンがそばにいると、みんな安心するよ〜。"], ["oko", "……アタシも言うの？ ……し、仕方ないわね。てれボンは、いつも一生懸命よ。それは認めるわ。"], ["tere", "お、おこボンまで……！ うれしすぎて……どうしましょう……。"], ["niko", "次は、おこボンの番〜！"], ["oko", "ちょ、ちょっと！ アタシはいいわよ！ ……{n}、笑ってんじゃないわよ！"]]}, {"id": "shiritori", "title": "しりとり対決", "lines": [["oko", "勝負よ！ しりとりで、アタシに勝てるかしら！"], ["niko", "やるやる！ じゃあ、わたしから！ 『しりとり』の『り』……りんご！"], ["oko", "ご……ごま！ ほら、次はひょえボンよ！"], ["hyoe", "ま、ま……まくら……。あ、あたち、これでいいかな……？"], ["rain", "うむ！ 見事である！ 我輩が審判を務めよう。次は『ら』である！"], ["oko", "ら……ラーメン！ ……あ。"], ["niko", "あー！ おこボン、『ん』がついた〜！ おこボンの負けだよ！"], ["oko", "ちょっと待ちなさいよ！ ……く、悔しい！ もう一回よ！"], ["hyoe", "ふふ……おこボンでも、負けること、あるんだね……。"]]}, {"id": "mimawari", "title": "島の見回り", "lines": [["oko", "島の見回りの時間よ！ ついてきなさい！"], ["niko", "はーい！ おさんぽ、たのしみ！"], ["mogu", "うちは、おべんとうを持っていくよ〜。ボーン！"], ["rain", "我輩も同行しよう。島の名所を、すべて解説してやるぞ！ まず、この道であるが……"], ["oko", "長くなるから、いいわよ！ 先に進むわよ！"], ["niko", "あっ、見て見て！ 空に虹が出てるよ！"], ["rain", "おお！ これは我輩が磨いた虹ではないか！ ……いや、違うか。しかし、見事なものよ！"], ["mogu", "虹を見ながら食べるおべんとうは、きっとおいしいよ〜。{n}もいっしょに、どう〜？"]]}, {"id": "kimi", "title": "{n}のおはなし", "lines": [["niko", "ねえねえ、最近{n}、来てくれてうれしいね！"], ["oko", "べ、別に待ってたわけじゃないけど……来てくれると、悪い気はしないわね。"], ["hyoe", "あたちは……うれしいよぉ……。ひとりより、みんなといるほうが、安心するから……。"], ["mogu", "{n}がいると、おやつがもっとおいしくなるんだよ〜。"], ["nemu", "……ぼくも……{n}と話すと……あったかい、きもち……。"], ["tere", "わ、私も……お話しできて……うれしい、です……。"], ["rain", "うむ！ {n}は、我輩たちの大切な客人である！ これからも、よろしく頼むぞ！ わっはっは！"]]}];
+  var HINTS = [["あいさつ", ["こんにちは", "おはよう", "おやすみ", "ただいま", "いってきます", "またね"]], ["きもち", ["うれしい", "たのしい", "こわい", "疲れた", "びっくり", "しょんぼり"]], ["食べ物", ["好きな食べ物は?", "おなかすいた", "おいしい", "ラーメン", "ケーキ"]], ["恋バナ", ["恋バナしよう", "好きな人いる?", "告白", "デート", "失恋"]], ["学校・勉強", ["宿題", "テスト", "部活", "夏休み", "給食"]], ["お金・買い物", ["お金", "セール", "節約", "コンビニ", "お小遣い"]], ["健康・体調", ["肩こり", "花粉症", "寝不足", "筋トレ", "歯医者"]], ["動物・ペット", ["犬", "猫", "ハムスター", "動物園", "水族館"]], ["音楽・歌", ["カラオケ", "ライブ", "歌詞", "ピアノ", "推し"]], ["夢・将来", ["将来の夢", "なりたいもの", "目標", "挑戦", "未来"]], ["SNS・スマホ", ["スマホ", "いいね", "充電", "通知", "SNS"]], ["ことわざ・名言", ["七転び八起き", "急がば回れ", "花より団子", "猿も木から落ちる", "名言"]], ["なぞなぞ", ["なぞなぞ", "クイズ"]], ["あいさつ・マナー", ["お願いします", "どういたしまして", "お大事に", "久しぶり", "失礼します"]], ["ひみつ・うわさ", ["ここだけの話", "裏話", "ひみつ"]], ["あそび", ["じゃんけん", "おみくじ", "しりとり"]], ["そのほか", ["ほめて", "ありがとう", "天気", "虹", "ゲーム", "島", "仕事", "旅行"]]];
   var NEW4 = {"oko": {"tadaima": ["おかえり。……べ、別に待ってたわけじゃないわよ！ 遅かったじゃない！", "やっと帰ってきたわね。おかえり、{n}！"], "itte": ["行ってらっしゃい。転ばないようにしなさいよ！ ……早く帰ってきなさいよね。", "気をつけて行ってきなさい！ 帰ってきたら、勝負の続きよ！"], "otsukare": ["お疲れさま。……ちゃんとがんばったじゃない。ほめてあげるわ！", "お疲れさま、{n}。今日くらいは、ゆっくりしなさいよ！"], "tasty": ["おいしいなら何よりだわ！ ……あたしにも、ひと口くらい残しておきなさいよ！", "いい食べっぷりじゃない。ごちそうさまが言えるのは、えらいわよ！"]}, "niko": {"tadaima": ["おかえりー！ 待ってたよ！ 今日はどんな一日だった？", "おかえり、{n}！ 帰ってきてくれて、うれしいな！"], "itte": ["いってらっしゃい！ 気をつけてね！ 帰ってきたら、お話聞かせてね！", "いってらっしゃーい！ いいことあるといいね！"], "otsukare": ["おつかれさま！ 今日もがんばったね、えらいよ！", "おつかれさま、{n}！ ゆっくり休んでね！"], "tasty": ["おいしかったんだね！ よかったー！ わたしもうれしいよ！", "いいね、いいね！ おいしいものは、しあわせの味だよ！"]}, "hyoe": {"tadaima": ["おかえり……。ちゃんと帰ってきて、よかったぁ……。", "おかえり、{n}……。外は、こわくなかった……？"], "itte": ["いってらっしゃい……。気をつけてね……。ボン、待ってるよ……。", "いってらっしゃい……。あぶないところは、通らないでね……。"], "otsukare": ["おつかれさま……。ボン、ずっと応援してたよぉ……。", "おつかれさま、{n}……。今日は、ゆっくりしてね……。"], "tasty": ["おいしかったの……？ よかったぁ……。ボンも、うれしい……。", "ごちそうさま、言えてえらいね……。ボンも、食べたくなっちゃった……。"]}, "mogu": {"tadaima": ["おかえり〜。ごはん、できてるよ〜。いっしょに食べよ〜。", "おかえり〜、{n}。おなか、すいたでしょ〜。"], "itte": ["いってらっしゃ〜い。帰ってきたら、おいしいもの食べようね〜。", "気をつけてね〜。おやつ、持った〜？"], "otsukare": ["おつかれさま〜。あったかいもの、食べてね〜。", "おつかれ〜、{n}。今日はごはんを、いっぱい食べていいよ〜。"], "tasty": ["おいしかったんだね〜。うち、それが一番うれしいよ〜。", "よかったね〜。おいしいは、しあわせのしるしだよ〜。"]}, "nemu": {"tadaima": ["おかえり……。ぼく、ずっと……うとうとして、待ってた……。", "おかえり……{n}……。おふとん、あっためておいたよ……。"], "itte": ["いってらっしゃい……。ぼくは……お留守番……。ふぁ……。", "いってらっしゃい……。帰ってきたら……いっしょに寝よう……。"], "otsukare": ["おつかれさま……。ゆっくり、休もうね……。", "おつかれ……{n}……。今日は、早く寝よう……。"], "tasty": ["おいしかったんだ……。よかった……。ぼくも、食べたい……ふぁ……。", "ごちそうさま……。おなかいっぱいで、ねむくなるね……。"]}, "tere": {"tadaima": ["お、おかえりなさい……。ちゃんと、待ってました……。", "おかえりなさい、{n}……。帰ってきてくれて、うれしい、です……。"], "itte": ["い、いってらっしゃい……。気をつけて、くださいね……。", "いってらっしゃいませ……。私、ここで、待ってます……。"], "otsukare": ["お、おつかれさまです……。今日も、よくがんばりましたね……。", "おつかれさまです、{n}……。ゆっくり、休んでくださいね……。"], "tasty": ["おいしかったんですね……。よかった、です……。", "ごちそうさま……ですね。私も、ちょっと、食べたくなりました……。"]}, "rain": {"tadaima": ["おお、帰ったか。おかえりである。我輩は、ずっとここで待っておったぞ。", "おかえり、{n}。帰る場所があるとは、良きことである。"], "itte": ["行ってまいるか。気をつけて行くがよい。我輩は、ここで待っておる。", "いってらっしゃい。帰る頃には、空に虹がかかっておるやもしれぬ。"], "otsukare": ["務め、大儀であった。ゆるりと休むがよい。", "お疲れであるな、{n}。今宵は、湯にでも浸かって、羽を伸ばすがよい。"], "tasty": ["それは何よりである。食とは、生きる喜びそのものだ。", "うむ、良き味であったか。馳走になったと言える心こそ、尊いものだ。"]}};
   Object.keys(NEW4).forEach(function (k) { Object.keys(NEW4[k]).forEach(function (n) { CH[k][n] = NEW4[k][n]; }); });
   var NEW5 = {"oko": {"surprise": ["ボン!? ……な、なによ急に！ びっくりするじゃない！", "ボン!? ……い、今の、驚いたわけじゃないわよ！ ちょっとだけよ！"], "shobon": ["しょボン……。……べ、別に落ち込んでないわよ！ ちょっとだけ気分が下がっただけ！", "しょボン……。そういうときは、勝負で気分転換するのよ！ ほら、じゃんけんしなさい！"]}, "niko": {"surprise": ["ボン!? えっ、びっくりしたぁ！ もう一回言って！", "ボン!? わあ、心臓が跳ねちゃったよ！ どうしたの？"], "shobon": ["しょボン……。でも、すぐ元気になるよ！ だって、{n}がいるもん！", "しょボン……。いっしょに、ごはんでも食べて元気出そう！"]}, "hyoe": {"surprise": ["ボン!? ……び、びっくりしたぁ……。あたち、心臓が止まるかと思ったボン……。", "ボン!? ……こ、こわかったぁ……。あたち、ちょっと泣きそうだボン……。"], "shobon": ["しょボン……。あたち、元気出ないボン……。", "しょボン……。……{n}、いっしょにいてくれる……？"]}, "mogu": {"surprise": ["ボン!? えっ、びっくりして、おにぎり落としそうになったよ〜！", "ボン!? うち、びっくりしたら、おなかがすいてきたよ〜。"], "shobon": ["しょボン……。おなか空いたら、元気出るかも〜。", "しょボン……。……おいしいもの食べたら、きっと元気になるよ〜。"]}, "nemu": {"surprise": ["ボン!? ……ふぁっ……びっくりして、目が覚めた……。", "ボン!? ……ねむけが、ちょっとだけ飛んだ……。"], "shobon": ["しょボン……。……ねむくて、しょんぼりしてる……。", "しょボン……。……寝れば、ちょっとはよくなる……と思う……。"]}, "tere": {"surprise": ["ボン!? あ、あわわ……び、びっくり、しました……！", "ボン!? ……い、今のは、聞かなかったことに……してください……。"], "shobon": ["しょボン……。す、すみません……ちょっと、気持ちが沈んでしまって……。", "しょボン……。……{n}に、心配をかけてしまいますね……。"]}, "rain": {"surprise": ["ボン!? ……こ、こほん。今のは驚いたのではない。虹が一瞬、揺らいだだけである！", "ボン!? ……うむ、これは予想外であるな。我輩としたことが、一本取られたではないか！"], "shobon": ["しょボン……。……う、うむ。賢者とて、しょんぼりする日はあるのだぞ。", "しょボン……。……お主、今の我輩の顔は、見なかったことにするのである。"]}};
@@ -699,6 +718,16 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     ["sad", /つらい|つらく|辛くて|辛かった|辛すぎ|^辛い|かなしい|悲しい|さびしい|寂しい|さみしい|(?<!お)つかれ(?!さま)|(?<!お)疲れ(?!さま|様)|しんどい|おちこ|落ち込|泣い|泣き|ふあん|不安|だるい|ゆううつ|憂鬱|すとれす|ねむれない|眠れない|くやしい|悔しい|いらいら|むかつく|いやなこと|嫌なこと|つまらない|こどく|孤独|元気(が)?(ない|でない|出ない)|げんき(が)?(ない|でない)/],
     ["fortune", /おみくじ|うらない|占い|うんせい|運勢|占って/],
     ["quote", /めいげん|名言|かくげん|格言|いいことば|いい言葉|ありがたい言葉|ふかいこと|深いこと|ことわざ/],
+    ["koi", /こいばな|恋ばな|すきなひと|好きな人|かたおもい|片思い|片想い|こくはく|告白|しつれん|失恋|ふられ|振られ|はつこい|初恋|りょうおもい|両思い|両想い|かれし|彼氏|かのじょ|彼女|でーと|きゅん|ひとめぼれ|一目惚れ|うわき|浮気|ぷろぽーず/],
+    ["shop", /せーる|ぽいんと|つうはん|通販|ぽちった|ぽちる|きゅうりょうび|給料日|せつやく|節約|むだづかい|無駄遣い|おこづかい|お小遣い|わりかん|割り勘|ふくぶくろ|福袋|こんびに|すーぱー|ひゃっきん|百均|ねだん|値段/],
+    ["body", /かたこり|肩こり|ようつう|腰痛|ずつう|頭痛|かふん|花粉|すとれっち|きんとれ|筋とれ|じょぎんぐ|うぉーきんぐ|ふとった|太った|やせた|痩せた|たいじゅう|体重|けんしん|健診|検診|はいしゃ|歯医者|むしば|虫歯|ふつかよい|二日酔い|ねんざ|捻挫|こっせつ|骨折|めまい|ふくつう|腹痛|しゃっくり|くしゃみ|咳|はなみず|鼻水|にきび|ひやけ|日焼け|ねぶそく|寝不足|ふみん|不眠/],
+    ["school2", /じゅけん|受験|せいせき|成績|ぶかつ|部活|ぶんかさい|文化祭|うんどうかい|運動会|えんそく|遠足|そつぎょう|卒業|にゅうがく|入学|きゅうしょく|給食|としょかん|図書館|なつやすみ|夏休み|ふゆやすみ|冬休み|つうちひょう|通知表|じゅぎょう|授業|さんすう|算数|すうがく|数学|こくご|国語|えいご|英語|たいいく|体育|ずこう|図工|ほうかご|放課後|しゅうがくりょこう|修学旅行|ちこく|遅刻|さぼった/],
+    ["zoo", /どうぶつえん|動物園|すいぞくかん|水族館|ぺっと|はむすたー|うさぎ|きんぎょ|金魚|いんこ|ぶんちょう|文鳥|ぺんぎん|くじら|らいおん|きりん|ひつじ|たぬき|きつね|ふくろう|ひよこ|かぶとむし|くわがた|熊|猿|蛇|亀|蛙|いきもの|生き物|飼いたい|飼ってる/],
+    ["live", /からおけ|らいぶ|こんさーと|ふぇす|推し|あーてぃすと|どらむ|ぎたー|ぴあの|ばんど|あにそん|ぼかろ|はなうた|鼻歌|さっきょく|作曲|さくし|作詞|歌詞|ぷれいりすと|いやほん|ひっとそん|おきにいりのきょく|すきなきょく|好きな曲|おんがくかい|ふぁんくらぶ|ばらーど/],
+    ["future", /しょうらい|将来|ゆめは|夢は|ゆめがある|夢がある|なりたい|もくひょう|目標|どりょく|努力|ちょうせん|挑戦|やりたいこと|かなえ|叶え|かなう|叶う|みらい|未来|しんろ|進路|しゅうしょく|就職|てんしょく|転職|ゆうめい|有名|おとなになったら|大人になったら/],
+    ["sns", /えすえぬえす|sns|すまほ|つぃーと|ついーと|ぽすと|いいね|ふぉろー|ふぉろわー|いんすた|えんじょう|炎上|つうち|通知|じゅうでん|充電|ばってりー|ぎが|けんがい|圏外|あぷり|すくしょ|すくりーんしょっと|ぱすわーど|ろぐいん/],
+    ["manner", /おねがいします|お願いします|どうぞ|どういたしまして|しつれいします|失礼します|おじゃまします|お邪魔します|おさきに|お先に|ごめんください|おせわになって|お世話になって|よろしくおねがい|お大事に|おだいじに|おかまいなく|お構いなく|ごぶさた|ご無沙汰|おひさしぶり|お久しぶり|ひさしぶり|久しぶり|ごきげんよう|いってらっしゃい/],
+    ["gossip", /こっそり|ないしょばなし|内緒話|うらばなし|裏話|とっておき|ひみつのはなし|ひみつの話|秘密の話|ここだけのはなし|ここだけの話|だれにもいわない|誰にも言わない|ぼんたち?のひみつ|ほかのぼんのひみつ|うわさばなし|噂話|ごしっぷ|とくだね/],
     ["secret", /うわさ|噂|ひみつ|秘密|ここだけ|ないしょ|内緒/],
     ["help", /つかいかた|使い方|へるぷ|なにができる|何ができる|わだい|話題|なにはなそう|何話そう|何を話|^おしえて$/],
     ["myname", /(わたし|私|ぼく|僕|おれ|俺|あたし|自分|うち).{0,2}(なまえ|名前)/],
@@ -762,7 +791,7 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     { l: "趣味は?", v: "趣味は?" }, { l: "苦手なものは?", v: "苦手なものは?" },
     { l: "ほかのボンのこと", v: "ほかのボンのこと教えて" }, { l: "じゃんけん", v: "じゃんけん" },
     { l: "おみくじ", v: "おみくじ" }, { l: "名言を教えて", v: "名言を教えて" },
-    { l: "ほめて", v: "ほめて" }, { l: "疲れた", v: "疲れた" }
+    { l: "ほめて", v: "ほめて" }, { l: "疲れた", v: "疲れた" }, { l: "なぞなぞ", v: "なぞなぞ" }, { l: "恋バナ", v: "恋バナしよう" }
   ];
 
   var stampOn = true;
@@ -836,6 +865,21 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     if (INTENTS[0][1].test(h)) return { t: CRISIS, crisis: true };
     if (INTENTS[1][1].test(h)) return { t: personalize(k, pick(k + "sad", c.sad)) };
 
+    var rw = RW[k], rs = rd[k], Q;
+    if (rs) {
+      Q = RIDDLES[rs.i];
+      if (/やめ|もういい|べつの(はなし|話)|ほかの(はなし|話)|おわり|終わり/.test(h)) { rd[k] = null; return { t: personalize(k, pick(k + "rend", rw.end)) }; }
+      if (/ひんと/.test(h)) return { t: personalize(k, pick(k + "rh", rw.hint).split("{h}").join(Q.h)), chips: "riddle" };
+      if (/こうさん|わからない|分からない|わかんない|ぎぶ|こたえ|答え|おしえて/.test(h)) { rd[k] = null; return { t: personalize(k, pick(k + "rg", rw.give).split("{a}").join(Q.a)) }; }
+      if (Q.re.test(h)) { rd[k] = null; return { t: personalize(k, pick(k + "ro", rw.ok)) }; }
+      rs.n++;
+      if (rs.n >= 3) { rd[k] = null; return { t: personalize(k, pick(k + "rn", rw.ng) + "\n" + pick(k + "rg", rw.give).split("{a}").join(Q.a)) }; }
+      return { t: personalize(k, pick(k + "rn", rw.ng)), chips: "riddle" };
+    }
+    if (/なぞなぞ|くいず|もんだい(を)?(だして|出して)|問題(を)?(だして|出して)/.test(h)) {
+      var qi = nextRiddle(k); rd[k] = { i: qi, n: 0 };
+      return { t: personalize(k, pick(k + "rq", rw.q).split("{q}").join(RIDDLES[qi].q)), chips: "riddle" };
+    }
     var hand = -1;
     if (/ぐー|ぐう|✊/.test(hs)) hand = 0; else if (/ちょき|✌/.test(hs)) hand = 1; else if (/ぱー|ぱあ|✋/.test(hs)) hand = 2;
     if (/じゃんけん|ぽん$/.test(hs) || (hand >= 0 && /^(ぐー|ぐう|ちょき|ぱー|ぱあ|✊|✌|✋)[!。.]*$/.test(hs))) {
@@ -845,6 +889,10 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
       return { t: "【" + HANDS[b].e + HANDS[b].n + "】 " + personalize(k, (key === "jlose" && Math.random() < 0.7 ? "しょボン…… " : "") + pick(k + key, c[key])), meta: c.dn + "との通算:あなたの " + st.w + "勝 " + st.l + "敗 " + st.d + "分", chips: "hands" };
     }
 
+    for (i = 0; i < PROV.length; i++) {
+      m = h.match(PROV[i][0]);
+      if (m) return { t: personalize(k, pick(k + "pv", PW[k]).split("{w}").join(m[0]).split("{m}").join(PROV[i][1])) };
+    }
     m = h.match(/(おこ|にこ|ひょえ|もぐ|ねむ|てれ|にじ)(ぼん|ちゃん|さん)/);
     if (m) {
       var who = Object.keys(NAMES).filter(function (x) { return NAMES[x] === m[1]; })[0];
@@ -909,6 +957,8 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     if (mode[cur] === "hands") {
       list = HANDS.map(function (h) { return { l: h.e + " " + h.n, v: h.n }; });
       list.push({ l: "べつの話", act: function () { mode[cur] = "base"; renderChips(); } });
+    } else if (mode[cur] === "riddle") {
+      list = [{ l: "ヒント", v: "ヒント" }, { l: "こうさん", v: "こうさん" }, { l: "やめる", v: "やめる" }];
     } else list = BASE_CHIPS;
     list.forEach(function (c) {
       var b = el("button", "chip", c.l); b.type = "button";
@@ -950,7 +1000,7 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     Array.prototype.forEach.call(tabs.children, function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-k") === k)); });
     $("bigav").innerHTML = avatar(k); $("nm").textContent = c.dn; $("bl").textContent = c.blurb;
     if (!hist[k].length) hist[k].push({ t: personalize(k, greeting(k)) });
-    renderLog(); renderChips();
+    renderLog(); renderChips(); rotatePh();
   }
 
   ORDER.forEach(function (k) {
@@ -972,7 +1022,7 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     $("setup").hidden = true; $("app").hidden = false;
     $("you").textContent = "きみの名前:" + userName + "ボン";
     $("snm").value = userName; $("stm").checked = stampOn;
-    $("spv").textContent = userName + "ボン";
+    $("spv").textContent = userName + "ボン"; refreshScTitles();
   }
   $("nf").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -990,9 +1040,77 @@ footer { max-width: 680px; margin: 22px auto 0; color: var(--muted); font-size: 
     userName = v; lsSet("bontalk_name", v);
     stampOn = $("stm").checked; lsSet("bontalk_stamp", stampOn ? "1" : "0");
     $("serr").textContent = "保存したよ。これからは「" + v + "ボン」と呼ぶね。";
-    $("you").textContent = "きみの名前:" + v + "ボン";
+    $("you").textContent = "きみの名前:" + v + "ボン"; refreshScTitles();
   });
   $("stm").addEventListener("change", function () { stampOn = $("stm").checked; lsSet("bontalk_stamp", stampOn ? "1" : "0"); });
+  var rd = {}, rseq = {};
+  RIDDLES.forEach(function (q) { q.re = new RegExp(q.re); });
+  PROV.forEach(function (p) { p[0] = new RegExp(p[0]); });
+  function nextRiddle(k) {
+    if (!rseq[k] || !rseq[k].length) {
+      var a = RIDDLES.map(function (_, i) { return i; }), j, x, t;
+      for (j = a.length - 1; j > 0; j--) { x = Math.floor(Math.random() * (j + 1)); t = a[j]; a[j] = a[x]; a[x] = t; }
+      rseq[k] = a;
+    }
+    return rseq[k].shift();
+  }
+  var HWORDS = [];
+  HINTS.forEach(function (g) { g[1].forEach(function (w) { if (w.length <= 8) HWORDS.push(w); }); });
+  function rotatePh() { input.placeholder = "ひとことどうぞ(例:" + HWORDS[Math.floor(Math.random() * HWORDS.length)] + ")"; }
+
+  var hintBox = $("hints");
+  HINTS.forEach(function (g) {
+    var row = el("div", "hrow"), w = el("div", "hw");
+    row.appendChild(el("span", "hl", g[0]));
+    g[1].forEach(function (x) {
+      var b = el("button", "chip", x); b.type = "button";
+      b.addEventListener("click", function () {
+        send(x);
+        var c = document.querySelector(".chat");
+        if (c && c.scrollIntoView) c.scrollIntoView({ block: "start", behavior: "smooth" });
+      });
+      w.appendChild(b);
+    });
+    row.appendChild(w); hintBox.appendChild(row);
+  });
+
+  var stage = $("stage"), scBtns = $("scs"), stageT = null;
+  function scTitle(sc) { return sc.title.split("{n}").join(userName ? userName + "ボン" : "きみ"); }
+  function refreshScTitles() { Array.prototype.forEach.call(scBtns.children, function (b, i) { b.textContent = scTitle(SCENES[i]); }); }
+  function scrollStage() { stage.scrollTop = stage.scrollHeight; }
+  function playScene(i) {
+    clearTimeout(stageT); stage.textContent = "";
+    var sc = SCENES[i], n = 0;
+    stage.appendChild(el("p", "stt", "「" + scTitle(sc) + "」"));
+    function step() {
+      if (n >= sc.lines.length) { stage.appendChild(el("p", "send-end", "おしまい。ほかのおはなしも、のぞいてみてね。")); scrollStage(); return; }
+      var L = sc.lines[n++], k = L[0];
+      var row = el("div", "row bot"), av = el("span", "av"), col = el("div", "col");
+      row.style.setProperty("--c", CH[k].color); av.innerHTML = avatar(k); row.appendChild(av);
+      col.appendChild(el("span", "sname", CH[k].dn)); col.appendChild(el("div", "bub", personalize(k, L[1]))); row.appendChild(col);
+      stage.appendChild(row); scrollStage();
+      stageT = setTimeout(step, 900 + L[1].length * 30);
+    }
+    step();
+  }
+  SCENES.forEach(function (sc, i) {
+    var b = el("button", "chip", ""); b.type = "button";
+    b.addEventListener("click", function () { playScene(i); });
+    scBtns.appendChild(b);
+  });
+  refreshScTitles();
+  $("scrand").addEventListener("click", function () { playScene(Math.floor(Math.random() * SCENES.length)); });
+  $("scstop").addEventListener("click", function () { clearTimeout(stageT); });
+
+  var PB = { oko: "ふんっ！", niko: "やっほー！", hyoe: "あわわ…", mogu: "もぐもぐ", nemu: "ふわぁ…", tere: "きゃっ", rain: "うむ！" };
+  var pr = $("parade");
+  ORDER.forEach(function (k) {
+    var b = el("button", ""); b.type = "button"; b.setAttribute("aria-label", CH[k].dn + "をタッチする");
+    b.innerHTML = avatar(k) + '<span class="pbub"></span>'; b.lastChild.textContent = PB[k];
+    b.addEventListener("click", function () { b.classList.add("on"); setTimeout(function () { b.classList.remove("on"); }, 1300); });
+    pr.appendChild(b);
+  });
+
   var saved = lsGet("bontalk_name");
   if (saved && NAMERE.test(saved)) { userName = saved; startApp(); select("oko"); } else { nameIn.focus(); }
 })();
