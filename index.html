@@ -23,6 +23,17 @@
 <meta name="twitter:image" content="https://bonkurarin.github.io/bon-museum/ogp.png">
 </head>
 <body>
+<div class="sharebar" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:10px 12px;margin:0 0 8px;font-size:13px">
+<span style="opacity:.8;align-self:center">シェア:</span>
+<button type="button" id="shareCopy" style="cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit">リンクをコピー</button>
+<a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fbonkurarin.github.io%2Fbon-museum%2F" target="_blank" rel="noopener" style="padding:6px 12px;border-radius:999px;border:1px solid currentColor;color:inherit;text-decoration:none">LINE</a>
+<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fbonkurarin.github.io%2Fbon-museum%2F&amp;text=%E3%83%9C%E3%83%B3%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%AA%E5%8D%9A%E7%89%A9%E9%A4%A8" target="_blank" rel="noopener" style="padding:6px 12px;border-radius:999px;border:1px solid currentColor;color:inherit;text-decoration:none">X</a>
+<span id="shareMsg" style="align-self:center;opacity:.8"></span>
+</div>
+<script>(function(){var b=document.getElementById('shareCopy'),m=document.getElementById('shareMsg');if(!b)return;var u='https://bonkurarin.github.io/bon-museum/';
+function done(t){m.textContent=t;setTimeout(function(){m.textContent=''},1500)}
+b.addEventListener('click',function(){try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){done('コピーしました')},function(){done('コピーできませんでした')})}else{var t=document.createElement('textarea');t.value=u;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();done('コピーしました')}}catch(e){done('コピーできませんでした')}})})();</script>
+
 <title>ボンちゃんの小さな博物館</title>
 
 <meta name="claude:viewport-fit-sides" content="cover">
