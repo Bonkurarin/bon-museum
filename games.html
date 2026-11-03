@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta name="site-version" content="20261103-4">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -399,5 +400,18 @@ clearTimeout(t);t=setTimeout(function(){b.classList.remove('on')},1600)});})();
 [].forEach.call(document.querySelectorAll("[data-new]"),function(e){var p=e.getAttribute("data-new").split("-");
 var u=new Date(+p[0],+p[1]-1,+p[2]).getTime();var df=Math.round((t-u)/864e5);
 if(df>=0&&df<=1){var b=document.createElement("span");b.className="newb";b.textContent="NEW";b.setAttribute("aria-label","新着");e.appendChild(b)}})})();</script>
+<script>(function(){var m=document.querySelector('meta[name="site-version"]');if(!m||!window.fetch)return;var v=m.content;
+fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():v}).then(function(n){n=n.trim();
+if(n&&n!==v){try{if(sessionStorage.getItem("bm-rl")===n)return;sessionStorage.setItem("bm-rl",n)}catch(e){}
+fetch(location.href.split("#")[0],{cache:"reload"}).then(function(){location.reload()}).catch(function(){})}}).catch(function(){})})();</script>
+<script>(function(){var sa=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true||location.search.indexOf("btn=1")>=0;if(!sa)return;
+var b=document.createElement("button");b.type="button";b.textContent="↻ 更新";b.setAttribute("aria-label","ページを最新に更新");
+b.style.cssText="position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;min-width:64px;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid #2E241C;background:#FFF8EA;color:#2E241C;font:700 15px/1 sans-serif;box-shadow:0 2px 0 rgba(46,36,28,.35);opacity:.92;cursor:pointer";
+var t=b.cloneNode(true);t.style.cssText="position:static;min-width:64px;min-height:44px;padding:0 14px;border-radius:999px;border:2px solid #2E241C;background:#FFF8EA;color:#2E241C;font:700 15px/1 sans-serif;box-shadow:0 2px 0 rgba(46,36,28,.35);cursor:pointer";
+var w=document.createElement("div");w.style.cssText="display:flex;justify-content:flex-end;padding:max(8px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 0 12px;position:relative;z-index:9999";w.appendChild(t);
+function run(){b.textContent=t.textContent="更新中…";b.disabled=t.disabled=true;var go=function(){location.reload()};
+try{fetch(location.href.split("#")[0],{cache:"reload"}).then(go,go)}catch(e){go()}}
+b.addEventListener("click",run);t.addEventListener("click",run);
+document.body.insertBefore(w,document.body.firstChild);document.body.appendChild(b)})();</script>
 </body>
 </html>
