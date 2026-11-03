@@ -151,23 +151,23 @@ footer p{margin:0}
     <p class="kicker">TALK WITH BONS</p>
     <h1>ボンたちと おしゃべり</h1>
     <div class="band thin" aria-hidden="true"></div>
-    <p class="lead">まず、きみの名前を決めよう(ブラウザに保存されて、せっていからいつでも変えられるよ)。話し相手をえらんで、ひとこと送ってみてね。ボンたちは、ことばに反応してセリフを返すよ。</p>
+    <p class="lead">まず、君の名前を決めよう(ブラウザに保存されて、設定からいつでも変えられるよ)。話し相手を選んで、一言送ってみてね。ボンたちは、言葉に反応してセリフを返すよ。</p>
   </header>
 
   <section class="sheet setup" id="setup" aria-labelledby="sh">
-    <h2 id="sh">なまえを きめてね</h2>
+    <h2 id="sh">名前を決めてね</h2>
     <p class="lead">ボンたちは、きみのことを「○○ボン」と呼ぶよ。ひらがな・カタカナで5文字まで入れてね。わからなければ、そのまま「モブボン」でもOK。</p>
     <form id="nf" autocomplete="off">
-      <label for="nmin" class="lab">なまえ</label>
+      <label for="nmin" class="lab">名前</label>
       <div class="nrow">
         <input type="text" id="nmin" maxlength="8" value="モブ" placeholder="モブ" inputmode="text" aria-describedby="nmerr">
         <span class="suf" aria-hidden="true">ボン</span>
       </div>
-      <p class="pv">よばれる名前:<b id="nmpv">モブボン</b></p>
+      <p class="pv">呼ばれる名前:<b id="nmpv">モブボン</b></p>
       <p class="err" id="nmerr" role="alert"></p>
-      <button class="send" type="submit">はじめる</button>
+      <button class="send" type="submit">始める</button>
     </form>
-    <p class="note">決めた名前はこのブラウザに保存されるよ。あとで「せってい」から変えられるよ。</p>
+    <p class="note">決めた名前はこのブラウザに保存されるよ。後で「設定」から変えられるよ。</p>
   </section>
 
   <div class="app" id="app" hidden>
@@ -181,18 +181,18 @@ footer p{margin:0}
     <p class="you" id="you"></p>
     <div id="log" role="log" aria-live="polite" aria-label="会話のようす"></div>
     <div class="chips" id="chips" aria-label="話しかけのヒント"></div>
-    <div class="chips touch" id="touch" aria-label="さわる"><span class="tl">さわる</span></div>
+    <div class="chips touch" id="touch" aria-label="さわる"><span class="tl">触る</span></div>
     <form id="f" autocomplete="off">
       <input type="text" id="t" maxlength="60" placeholder="ひとことどうぞ" aria-label="ボンに話しかける" enterkeyhint="send">
-      <button class="send" id="sb" type="submit">おくる</button>
+      <button class="send" id="sb" type="submit">送る</button>
     </form>
-    <p class="note">台本で動く会話ツールだよ(AIとのリアルタイムの会話ではないよ)。ことばによっては、うまく返せないこともあるよ。</p>
+    <p class="note">台本で動く会話ツールだよ(AIとのリアルタイムの会話ではないよ)。言葉によっては、うまく返せないこともあるよ。</p>
   </section>
 
   <details class="kw sheet" id="hintd" open>
-    <summary>ことばの ヒント</summary>
+    <summary>言葉のヒント</summary>
     <div class="hintin">
-      <p class="note">ボンたちが反応することばの例だよ。タップすると、いま話している相手に送られるよ。ここにないことばにも、反応することがあるよ。</p>
+      <p class="note">ボンたちが反応する言葉の例だよ。タップすると、今話している相手に送られるよ。ここにない言葉にも、反応することがあるよ。</p>
       <div id="hints" style="display:flex;flex-direction:column;gap:12px"></div>
     </div>
   </details>
@@ -200,46 +200,46 @@ footer p{margin:0}
   <section aria-labelledby="sth">
     <h2 id="sth">ボンたちの おしゃべり</h2>
     <div class="sheet stage">
-      <p class="note">ボンたちが、お互いに話しているところをのぞいてみよう。話題をえらぶと、台本どおりに会話がはじまるよ。</p>
+      <p class="note">ボンたちが、お互いに話しているところを覗いてみよう。話題を選ぶと、台本通りに会話が始まるよ。</p>
       <div class="scbar" id="scs" aria-label="おはなしをえらぶ"></div>
-      <div class="scbar"><button class="chip" type="button" id="scrand">おまかせで見る</button><button class="chip" type="button" id="scstop">とめる</button></div>
+      <div class="scbar"><button class="chip" type="button" id="scrand">お任せで見る</button><button class="chip" type="button" id="scstop">止める</button></div>
       <div id="stage" role="log" aria-live="polite" aria-label="ボンたちの会話"></div>
     </div>
   </section>
 
   <details class="kw sheet" id="cfg">
-    <summary>せってい</summary>
+    <summary>設定</summary>
     <form id="sf" autocomplete="off" class="cfgf">
-      <label for="snm" class="lab">なまえ</label>
+      <label for="snm" class="lab">名前</label>
       <div class="nrow"><input type="text" id="snm" maxlength="8"><span class="suf" aria-hidden="true">ボン</span></div>
-      <p class="pv">よばれる名前:<b id="spv"></b></p>
+      <p class="pv">呼ばれる名前:<b id="spv"></b></p>
       <label class="chk"><input type="checkbox" id="stm" checked> たまにスタンプ(画像)を送ってくる</label>
       <button class="send" type="submit">保存する</button>
       <p class="err" id="serr" role="status"></p>
-      <button class="send" type="button" id="clr">おぼえたことと会話を消す</button>
-      <p class="note">名前・せってい・会話・おぼえたことは、このブラウザにだけ保存されるよ(ほかの人には見えないよ)。</p>
+      <button class="send" type="button" id="clr">覚えたことと会話を消す</button>
+      <p class="note">名前・設定・会話・覚えたことは、このブラウザにだけ保存されるよ(他の人には見えないよ)。</p>
     </form>
   </details>
   <details class="kw sheet">
     <summary>反応するワードの一覧</summary>
     <dl class="kwl">
-      <dt>あいさつ</dt><dd>こんにちは、おはよう、おやすみ、またね、ありがとう、ごめんね、おめでとう、元気?</dd>
-      <dt>なまえ</dt><dd>名前は?(ボンたちの名前)、わたしの名前は?(きめた名前を答えてくれる)</dd>
-      <dt>すきなもの</dt><dd>好きな食べ物、趣味、苦手なもの、天気、虹、季節、動物、島、ゲーム、音楽</dd>
+      <dt>挨拶</dt><dd>こんにちは、おはよう、おやすみ、またね、ありがとう、ごめんね、おめでとう、元気?</dd>
+      <dt>名前</dt><dd>名前は?(ボンたちの名前)、わたしの名前は?(きめた名前を答えてくれる)</dd>
+      <dt>好きなもの</dt><dd>好きな食べ物、趣味、苦手なもの、天気、虹、季節、動物、島、ゲーム、音楽</dd>
       <dt>ボンの本能</dt><dd>しょんぼりすると「しょボン……」、びっくりすると「ボン!?」、ごはんのときは「ボーン！」。ボンという種族の本能で、みんな同じ(「びっくり」「しょんぼり」「いただきます」と送ってみてね)</dd>
-      <dt>ほかのボン</dt><dd>おこボン、にこボン、ひょえボン、もぐボン、ねむボン、てれボン、にじボン、みんな</dd>
-      <dt>あそび</dt><dd>じゃんけん、おみくじ、しりとり、かずあて、名言、ひみつ</dd>
-      <dt>おぼえてくれること</dt><dd>「好きな食べ物はカレー」と教えると覚えてくれる(「わたしの好きなもの覚えてる?」で聞ける)。「さっきの話は?」で直前の話題、「今日は何の日?」で今日のひとこと、「何日目?」で会った日数がわかる</dd>
-      <dt>きもち</dt><dd>ほめて、かわいい、すき、疲れた、さびしい、眠い、暇、がんばる、笑</dd>
+      <dt>他のボン</dt><dd>おこボン、にこボン、ひょえボン、もぐボン、ねむボン、てれボン、にじボン、みんな</dd>
+      <dt>遊び</dt><dd>じゃんけん、おみくじ、しりとり、かずあて、名言、ひみつ</dd>
+      <dt>覚えてくれること</dt><dd>「好きな食べ物はカレー」と教えると覚えてくれる(「わたしの好きなもの覚えてる?」で聞ける)。「さっきの話は?」で直前の話題、「今日は何の日?」で今日のひとこと、「何日目?」で会った日数がわかる</dd>
+      <dt>気持ち</dt><dd>ほめて、かわいい、すき、疲れた、さびしい、眠い、暇、がんばる、笑</dd>
       <dt>行事・食べ物</dt><dd>ハロウィン、クリスマス、お正月、花火、お花見、ラーメン、カレー、おにぎり、ケーキ、コーヒー、お酒、おやつ</dd>
-      <dt>仕事・おでかけ</dt><dd>仕事、残業、月曜日、給料、休み、旅行、電車、海、山、散歩、ドライブ</dd>
+      <dt>仕事・お出かけ</dt><dd>仕事、残業、月曜日、給料、休み、旅行、電車、海、山、散歩、ドライブ</dd>
       <dt>気持ち(もっと)</dt><dd>うれしい、たのしい、こわい、緊張、どきどき、わくわく、安心、最高</dd>
-      <dt>あそび(もっと)</dt><dd>しりとり、なぞなぞ、クイズ、かくれんぼ、「遊ぼう」(まだじゃんけんだけ遊べるよ)</dd>
+      <dt>遊び(もっと)</dt><dd>しりとり、なぞなぞ、クイズ、かくれんぼ、「遊ぼう」(まだじゃんけんだけ遊べるよ)</dd>
       <dt>サイトのこと</dt><dd>博物館、ボンのしま、パズル、リズム、スタンプ、LINE</dd>
       <dt>日常</dt><dd>お風呂、掃除、買い物、洗濯、昼寝、映画、雨の日</dd>
       <dt>いろいろ(もっと)</dt><dd>好きな色、何歳?、歌って、ぎゅー、学校、勉強、宿題、体調、頭が痛い、お金、ほしいもの、おばけ、魔法、夢、宇宙、友だち、けんか、なんで?、ほんと?</dd>
-      <dt>ことばあつめ</dt><dd>食べ物・おかし・のみもの・くだもの・やさい・動物・いきもの・自然・服・家のもの・ネット・場所・仕事・趣味・スポーツ・時間・擬音・形容詞・動詞・都道府県・国・日本の行事・学校・気持ちのことばなど、約2234語に、ひとこと返す(例:「プリン」「うどん」「富士山」「ふわふわ」)</dd>
-      <dt>スキンシップ</dt><dd>「さわる」のボタン(なでなで・つんつん・ハイタッチ・ぎゅー)をおすと、ボンが反応してハートが出る。「なでなで」「ほっぺをつんつん」「握手」「ぎゅー」と打っても反応するよ</dd>
+      <dt>言葉集め</dt><dd>食べ物・おかし・のみもの・くだもの・やさい・動物・いきもの・自然・服・家のもの・ネット・場所・仕事・趣味・スポーツ・時間・擬音・形容詞・動詞・都道府県・国・日本の行事・学校・気持ちのことばなど、約2234語に、一言返す(例:「プリン」「うどん」「富士山」「ふわふわ」)</dd>
+      <dt>スキンシップ</dt><dd>「さわる」のボタン(なでなで・つんつん・ハイタッチ・ぎゅー)を押すと、ボンが反応してハートが出る。「なでなで」「ほっぺをつんつん」「握手」「ぎゅー」と打っても反応するよ</dd>
       <dt>恋バナ</dt><dd>恋バナしよう、好きな人、片思い、告白、デート、失恋、彼氏、彼女</dd>
       <dt>学校(もっと)</dt><dd>受験、成績、部活、文化祭、運動会、遠足、卒業、給食、夏休み、授業、遅刻</dd>
       <dt>お金・買い物(もっと)</dt><dd>セール、ポイント、通販、節約、無駄遣い、お小遣い、割り勘、コンビニ、100均</dd>
@@ -250,17 +250,17 @@ footer p{margin:0}
       <dt>SNS・スマホ</dt><dd>スマホ、SNS、ツイート、いいね、フォロー、通知、充電、圏外、アプリ</dd>
       <dt>ことわざ</dt><dd>七転び八起き、石の上にも三年、急がば回れ、猿も木から落ちる、花より団子、ほか14種類(意味を教えてくれるよ)</dd>
       <dt>なぞなぞ</dt><dd>「なぞなぞ」「クイズ」と送ると出題してくれる。答えを送ると正解かどうか教えてくれる(ヒント・こうさんもあるよ)</dd>
-      <dt>あいさつ・マナー</dt><dd>お願いします、どうぞ、どういたしまして、失礼します、お邪魔します、お大事に、お久しぶり、いってらっしゃい</dd>
+      <dt>挨拶・マナー</dt><dd>お願いします、どうぞ、どういたしまして、失礼します、お邪魔します、お大事に、お久しぶり、いってらっしゃい</dd>
       <dt>ここだけの話</dt><dd>ここだけの話、裏話、こっそり、内緒話、誰にも言わない、ボンたちのひみつ</dd>
-      <dt>いま</dt><dd>いま何時?、今日は何曜日?</dd>
-      <dt>こまったとき</dt><dd>ヘルプ、なにができる?</dd>
+      <dt>今</dt><dd>いま何時?、今日は何曜日?</dd>
+      <dt>困った時</dt><dd>ヘルプ、なにができる?</dd>
     </dl>
   </details>
   </div>
   <div class="parade" id="parade" aria-label="ボンたち(タッチするとひとこと)"></div>
 </main>
 <footer>
-  <p>つくったひと:ボンちゃん</p>
+  <p>作った人:ボンちゃん</p>
   <p>© ボンちゃん</p>
 </footer>
 <noscript><p style="padding:16px">このページは JavaScript をオンにすると遊べるよ。</p></noscript>
@@ -1080,7 +1080,7 @@ footer p{margin:0}
   stampOn = lsGet("bontalk_stamp") !== "0";
   function startApp() {
     $("setup").hidden = true; $("app").hidden = false;
-    $("you").textContent = "きみの名前:" + userName + "ボン";
+    $("you").textContent = "君の名前:" + userName + "ボン";
     $("snm").value = userName; $("stm").checked = stampOn;
     $("spv").textContent = userName + "ボン"; refreshScTitles();
   }
@@ -1100,7 +1100,7 @@ footer p{margin:0}
     userName = v; lsSet("bontalk_name", v);
     stampOn = $("stm").checked; lsSet("bontalk_stamp", stampOn ? "1" : "0");
     $("serr").textContent = "保存したよ。これからは「" + v + "ボン」と呼ぶね。";
-    $("you").textContent = "きみの名前:" + v + "ボン"; refreshScTitles();
+    $("you").textContent = "君の名前:" + v + "ボン"; refreshScTitles();
   });
   $("stm").addEventListener("change", function () { stampOn = $("stm").checked; lsSet("bontalk_stamp", stampOn ? "1" : "0"); });
   var rd = {}, rseq = {};
@@ -1366,14 +1366,14 @@ footer p{margin:0}
   var FJ = { ramen: "ラーメン", sushi: "寿司", curry: "カレー", cake: "ケーキ", icecream: "アイス", choco: "チョコ", onigiri: "おにぎり", pizza: "ピザ", udon: "うどん", pan: "パン", yakiniku: "焼肉", hamburg: "ハンバーグ", takoyaki: "たこ焼き", gyoza: "餃子" };
   $("clr").addEventListener("click", function () {
     var b = $("clr");
-    if (!clrArmed) { clrArmed = true; b.textContent = "ほんとうに消す? もう一度おしてね"; setTimeout(function () { clrArmed = false; b.textContent = "おぼえたことと会話を消す"; }, 4000); return; }
-    clrArmed = false; b.textContent = "おぼえたことと会話を消す";
+    if (!clrArmed) { clrArmed = true; b.textContent = "本当に消す? もう一度押してね"; setTimeout(function () { clrArmed = false; b.textContent = "覚えたことと会話を消す"; }, 4000); return; }
+    clrArmed = false; b.textContent = "覚えたことと会話を消す";
     [LS_H, LS_L, LS_D].forEach(lsDel);
     likes = []; topic = null; game = {};
     ORDER.forEach(function (k) { hist[k] = []; });
     hist[cur].push({ t: personalize(cur, greeting(cur)) });
     renderLog(); renderChips();
-    $("serr").textContent = "おぼえたことと会話を消したよ。";
+    $("serr").textContent = "覚えたことと会話を消したよ。";
   });
 
   var HWORDS = [];
