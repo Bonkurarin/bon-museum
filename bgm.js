@@ -10,8 +10,8 @@ css.textContent=".bmbgm{position:fixed;left:max(12px,env(safe-area-inset-left,0p
 document.head.appendChild(css);
 var b=document.createElement("button");b.type="button";b.className="bmbgm";
 function ui(){var on=!a.paused;b.className="bmbgm"+(on?" on":"");b.innerHTML='<span class="n">♪</span> BON MEMORIA '+(on?"停止":"を流す");b.setAttribute("aria-label",on?"BGMを止める":"BGM「BON MEMORIA」を流す")}
-function go(){st.on=true;sv();var p=a.play();if(p&&p.then)p.then(ui,ui);ui()}
-function stop(){st.on=false;sv();a.pause();ui()}
+function go(){yl=false;st.on=true;try{window.bmStamp&&bmStamp.add("bgm")}catch(e){}sv();var p=a.play();if(p&&p.then)p.then(ui,ui);ui()}
+function stop(){yl=false;st.on=false;sv();a.pause();ui()}
 b.addEventListener("click",function(){a.paused?go():stop()});
 document.body.appendChild(b);ui();
 var g=document.createElement("button");g.type="button";g.className="bmbg";document.body.appendChild(g);
@@ -31,7 +31,10 @@ a.addEventListener("timeupdate",function(){var n=Date.now();if(n-last>1500){last
 window.addEventListener("pagehide",function(){if(!a.paused){st.t=a.currentTime;sv()}});
 a.addEventListener("play",ui);a.addEventListener("pause",ui);
 /* 動画・音楽プレーヤーが鳴るときはBGMを止める */
-document.addEventListener("play",function(e){if(e.target!==a&&!a.paused){st.on=false;sv();a.pause();ui()}},true);
+var yl=false;
+document.addEventListener("play",function(e){if(e.target!==a&&!a.paused){yl=true;st.on=false;sv();a.pause();ui()}},true);
+/* 曲や動画が最後まで終わったら、BGMに戻る(自分で止めたときは戻らない) */
+document.addEventListener("ended",function(e){if(e.target!==a&&yl){yl=false;go()}},true);
 /* 前のページで流していたら続きから */
 if(st.on){a.preload="auto";var t=+st.t||0;
 a.addEventListener("loadedmetadata",function(){try{if(t&&t<a.duration)a.currentTime=t}catch(e){}},{once:true});

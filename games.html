@@ -2,26 +2,26 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="site-version" content="20261104-9">
+<meta name="site-version" content="20261104-11">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#55602A">
 <meta name="apple-mobile-web-app-title" content="ボンちゃんの博物館">
-<meta name="description" content="ゲーム・音楽・写真・LINEスタンプ。ボンちゃんの創作を ならべた 小さな展示室です。">
+<meta name="description" content="ボンちゃんシリーズと、そのほかのゲーム11作品。あそべるものから準備中まで ぜんぶ ならべた 展示室です。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ボンちゃんのゲーム｜ボンちゃんの小さな博物館">
 <meta property="og:title" content="ボンちゃんのゲーム｜ボンちゃんの小さな博物館">
-<meta property="og:description" content="ゲーム・音楽・写真・LINEスタンプ。ボンちゃんの創作を ならべた 小さな展示室です。">
+<meta property="og:description" content="ボンちゃんシリーズと、そのほかのゲーム11作品。あそべるものから準備中まで ぜんぶ ならべた 展示室です。">
 <meta property="og:url" content="https://bonkurarin.github.io/bon-museum/games.html">
-<meta property="og:image" content="https://bonkurarin.github.io/bon-museum/ogp.png">
+<meta property="og:image" content="https://bonkurarin.github.io/bon-museum/ogp_games.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ボンちゃんのゲーム｜ボンちゃんの小さな博物館">
-<meta name="twitter:description" content="ゲーム・音楽・写真・LINEスタンプ。ボンちゃんの創作を ならべた 小さな展示室です。">
-<meta name="twitter:image" content="https://bonkurarin.github.io/bon-museum/ogp.png">
+<meta name="twitter:description" content="ボンちゃんシリーズと、そのほかのゲーム11作品。あそべるものから準備中まで ぜんぶ ならべた 展示室です。">
+<meta name="twitter:image" content="https://bonkurarin.github.io/bon-museum/ogp_games.png">
 </head>
 <body>
 <div class="sharebar" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:10px 12px;margin:0 0 8px;font-size:13px">
@@ -266,6 +266,12 @@ h2{font-size:20px;margin-bottom:12px}
 <p class="lead">ボンちゃんシリーズと、そのほかのゲームを ぜんぶ ならべた 展示室です。</p>
 </header>
 
+<div class="gfilter" role="group" aria-label="ゲームの絞り込み" style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px"><button type="button" class="go" data-f="all" aria-pressed="true">すべて</button><button type="button" class="go" data-f="play" aria-pressed="false">あそべる</button><button type="button" class="go" data-f="wip" aria-pressed="false">つくりちゅう</button><span id="gfc" aria-live="polite" style="align-self:center;font-size:13px"></span></div>
+<script>(function(){var bs=document.querySelectorAll(".gfilter [data-f]");
+function st(a){return /あそべる/.test((a.querySelector(".tags")||{}).textContent||"")&&!a.querySelector(".tag.wip")&&!a.querySelector(".soon")?"play":"wip"}
+function ap(f){var n=0;document.querySelectorAll("article.sheet").forEach(function(a){var ok=f==="all"||st(a)===f;a.style.display=ok?"":"none";if(ok)n++});bs.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.f===f?"true":"false");b.style.opacity=b.dataset.f===f?"1":".6"});document.getElementById("gfc").textContent=f==="all"?"":n+"作品"}
+bs.forEach(function(b){b.addEventListener("click",function(){ap(b.dataset.f)})});document.addEventListener("DOMContentLoaded",function(){ap("all")})})();</script>
+
 <section aria-labelledby="s1">
 <h2 id="s1"><svg class="i" width="24" height="24" aria-hidden="true"><use href="#leaf"/></svg><span class="t">ボンちゃんシリーズ</span></h2>
 <nav class="gtoc" aria-label="ゲームの目次" style="display:flex;flex-direction:column;gap:8px;margin:0 0 16px;padding:12px 14px;border:1px solid currentColor;border-radius:10px;font-size:14px"><strong>ゲームの目次</strong><div style="font-size:12px;opacity:.85">「あそべる」は遊べるゲーム、「準備中」はまだ作成中です。「18歳以上」は18歳以上のみ遊べるゲームです。</div><div><b>ボンちゃんシリーズ</b>：<a href="#g-utopia">BON UTOPIA</a> ・ <a href="talk.html">ボンたちと おしゃべり</a> ・ <a href="#g-nyanko">にゃんこガーディアン</a> ・ <a href="#g-nechigai">寝違え大騒動</a> ・ <a href="#g-puzzle">ボン・パズル</a> ・ <a href="#g-bonlife">ボンボンライフ！</a> ・ <a href="#g-koi">ボン♥こい</a> ・ <a href="#g-rhythm">ボン・リズム(準備中)</a> ・ <a href="#g-bontasia">Bontasia(準備中)</a> ・ <a href="#g-seigame">ボン生ゲーム(試作版)</a></div><div><b>そのほかのゲーム</b>：<a href="#g-danmaku">弾幕のメガリス</a> ・ <a href="#g-megalith">盤上のメガリス</a></div><div><a href="zukan.html">ボン図鑑を見る</a></div></nav>
@@ -422,6 +428,7 @@ function run(){b.textContent=t.textContent="更新中…";b.disabled=t.disabled=
 try{fetch(location.href.split("#")[0],{cache:"reload"}).then(go,go)}catch(e){go()}}
 b.addEventListener("click",run);t.addEventListener("click",run);
 document.body.insertBefore(w,document.body.firstChild);document.body.appendChild(b)})();</script>
+<script src="stamp.js"></script>
 <script src="bgm.js"></script>
 </body>
 </html>
